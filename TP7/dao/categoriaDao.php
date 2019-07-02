@@ -3,16 +3,60 @@ include_once ($_SERVER["DOCUMENT_ROOT"] . '/models/clasecategoria.php');
 class categoriaDao {
 
     public static function ObtenerPorID($id) {
-        return 'entro a obtener por id con el id: '.$id;
+        $Objeto=new categoria();
+        $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
+		$query = 'select * from categoriasproductos where categoriasproductos.idcategoriasproductos= :idcategoriasproductos';
+		$STH = $DBH->prepare($query);
+		$STH->setFetchMode(PDO::FETCH_ASSOC);
+		$params = array(                                
+			":idcategoriasproductos" => $id
+		);
+		$STH->execute($params);
+		$DBH=null;
+		if ($STH->rowCount() > 0) {
+			while($row = $STH->fetch()) {
+                $Objeto->id=$row['idcategoriasproductos'];
+                $Objeto->nombre=$row['nombre'];
+			}
+        }
+         return $Objeto;   
     }// get
 
     public static function ObtenerTodos() {
-        return 'entro a obtener todos';
+        $arrayObjetos=new array();
+        $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
+		$query = 'select * from categoriasproductos';
+		$STH = $DBH->prepare($query);
+		$STH->setFetchMode(PDO::FETCH_ASSOC);
+		$params = array(                                
+			":idcategoriasproductos" => $id
+		);
+		$STH->execute($params);
+		$DBH=null;
+		if ($STH->rowCount() > 0) {
+			while($row = $STH->fetch()) {
+                $Objeto=new categoria();
+                $Objeto->id=$row['idcategoriasproductos'];
+                $Objeto->nombre=$row['nombre'];
+                $arrayObjetos[]=$Objeto;
+			}
+        }
+         return $arrayObjetos;   
         //devuelve un array de objetos de tipo categoria
     }
 
     public static function nuevo($item) {
-        return 'entro a nuevo';
+        $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
+		$query = 'INSERT INTO categoriasproductos (nombre) values(:nombre)';
+		$STH = $DBH->prepare($query);
+		$STH->setFetchMode(PDO::FETCH_ASSOC);
+		$params = array(                                
+            ":nombre" => $item->nombre;
+		);
+		$STH->execute($params);
+        $item->id=$DBH->lastInsertId();
+        $DBH=null;
+        return $item;
     }// nuevo    
 
     public static function modificar($item) {
@@ -20,6 +64,16 @@ class categoriaDao {
     }// modificar
 
     public static function eliminar($id) {
+        $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
+		$query = 'DELETE FROM categoriasproductos where categoriasproductos.idcategoriasproductos= :idcategoriasproductos';
+		$STH = $DBH->prepare($query);
+		$STH->setFetchMode(PDO::FETCH_ASSOC);
+		$params = array(                                
+            ":idcategoriasproductos" => $id;
+        )
+		$STH->execute($params);
+        $DBH=null;
+        return $item;
         //aca va la logica para eliminar
     }// eliminar
 

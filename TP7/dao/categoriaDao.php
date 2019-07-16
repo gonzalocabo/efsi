@@ -54,9 +54,10 @@ class categoriaDao {
             ":nombre" => $item->nombre;
 		);
 		$STH->execute($params);
-        $item->id=$DBH->lastInsertId();
+        $id=$DBH->lastInsertId();
         $DBH=null;
-        return $item;
+        $STH=null;
+        return $id;
     }// nuevo    
 
     public static function modificar($item) {

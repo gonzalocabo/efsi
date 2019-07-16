@@ -10,13 +10,17 @@
         <link rel="apple-touch-icon" href="/apple-icon.png">
         <link rel="shortcut icon" href="/favicon.ico">
 
-
+        
         <link rel="stylesheet" href="../vendors/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="../vendors/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="../vendors/themify-icons/css/themify-icons.css">
         <link rel="stylesheet" href="../vendors/flag-icon-css/css/flag-icon.min.css">
         <link rel="stylesheet" href="../vendors/selectFX/css/cs-skin-elastic.css">
         <link rel="stylesheet" href="../assets/css/style.css">
+        
+        <link rel="stylesheet" href="../vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" href="../vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css">
+
 
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
     </head>
@@ -62,7 +66,7 @@
         <div class="content mt-3">
         <div class="card">
                 <div class="card-body">
-                    <table class="table">
+                    <table id="mi-grilla" class="table table-striped table-bordered">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col" class="text-center">#</th>
@@ -99,6 +103,8 @@
     <!-- Right Panel -->
 
 
+    
+
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <script src="../vendors/popper.js/dist/umd/popper.min.js"></script>
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -109,6 +115,38 @@
     <script src="../assets/js/init-scripts/peitychart/peitychart.init.js"></script>
     <!-- scripit init-->
 
+
+
+    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="../vendors/jszip/dist/jszip.min.js"></script>
+    <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+    <!--<script src="../assets/js/init-scripts/data-table/datatables-init.js"></script>-->
+    <script>
+        (function ($) {
+		$('#mi-grilla').DataTable({
+        "language": {
+            "lengthMenu": "Mostrando _MENU_ registros por pagina",
+            "zeroRecords": "Nada para mostrar",
+            "info": "Mostrando pagina _PAGE_ de _PAGES_",
+            "infoEmpty": "No hay registros disponibles",
+            "infoFiltered": "(filtrado de _MAX_ registros totales)",
+            "search": "Buscar:",
+            "paginate": {
+                "previous": "Anterior",
+                "next": "Siguiente"
+            }
+        }
+        });
+		
+	    })(jQuery);
+    </script>
 </body>
       
 </html>

@@ -29,7 +29,7 @@ class usuarioDao {
     }// get
 
     public static function ObtenerTodos() {
-        $arrayObjetos=new array();
+        $arrayObjetos= array();
         $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
 		$query = 'select usuarios.idusuario, usuarios.nombre, usuarios.apellido, usuarios.apellido, usuarios.mail, usuarios.estado, categoriasusuarios.nombrecategoria from usuarios inner join categoriasusuarios on categoriasusuarios.idcategoriasusuario=usuarios.idcategoria';
 		$STH = $DBH->prepare($query);

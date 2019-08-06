@@ -23,7 +23,7 @@ class categoriaDao {
     }// get
 
     public static function ObtenerTodos() {
-        $arrayObjetos=new array();
+        $arrayObjetos= array();
         $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
 		$query = 'select * from categoriasproductos';
 		$STH = $DBH->prepare($query);
@@ -50,8 +50,8 @@ class categoriaDao {
 		$query = 'INSERT INTO categoriasproductos (nombre) values(:nombre)';
 		$STH = $DBH->prepare($query);
 		$STH->setFetchMode(PDO::FETCH_ASSOC);
-		$params = array(                                
-            ":nombre" => $item->nombre;
+		$params = array(                      
+            ":nombre" => $item->nombre
 		);
 		$STH->execute($params);
         $id=$DBH->lastInsertId();
@@ -70,8 +70,8 @@ class categoriaDao {
 		$STH = $DBH->prepare($query);
 		$STH->setFetchMode(PDO::FETCH_ASSOC);
 		$params = array(                                
-            ":idcategoriasproductos" => $id;
-        )
+            ":idcategoriasproductos" => $id
+        );
 		$STH->execute($params);
         $DBH=null;
         return $item;

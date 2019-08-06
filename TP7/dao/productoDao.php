@@ -36,7 +36,7 @@ class productoDao {
     }// get
 
     public static function ObtenerTodos() {
-        $arrayObjetos=new array();
+        $arrayObjetos= array();
         $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
 		$query = 'select * from productos';
 		$STH = $DBH->prepare($query);

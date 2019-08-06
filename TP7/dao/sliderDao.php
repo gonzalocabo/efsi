@@ -25,7 +25,7 @@ class sliderDao {
     }// get
 
     public static function ObtenerTodos() {
-        $arrayObjetos=new array();
+        $arrayObjetos= array();
         $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
 		$query = 'select * from slider';
 		$STH = $DBH->prepare($query);

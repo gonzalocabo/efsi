@@ -33,6 +33,7 @@
 
     <?php
         require_once($_SERVER['DOCUMENT_ROOT'] . '/Left-panel.php');
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/controllers/categoriaController.php');
     ?>
 
     <!-- Left Panel -->
@@ -75,15 +76,16 @@
                     <strong>Ingresar categoria</strong>
                 </div>
                 <div class="card-body card-block">
-                    <form action="" method="post" class="form-horizontal">
+                    <form action="" method="post" class="form-horizontal" id="formulario">
                         <div class="row form-group">
+                            <input type="hidden" name="accion" id="accion" value="nuevo" />
                             <div class="col col-md-3"><label for="hf-email" class=" form-control-label">Categoria:</label></div>
                             <div class="col-12 col-md-9"><input type="text" id="categoria" name="categoria" placeholder="Ingrese categoria..." class="form-control"><span class="help-block">Por favor ingrese la categoria</span></div>
                         </div>
                     </form>
                 </div>
                 <div class="card-footer"style="text-align:center">
-                    <button type="submit" class="btn btn-success btn-sm">
+                    <button type="submit" class="btn btn-success btn-sm" onclick="Validar();">
                         <i class="fa fa-dot-circle-o"></i> Aceptar
                     </button>
                     <button type="reset" class="btn btn-danger btn-sm">
@@ -108,7 +110,37 @@
     <!-- scripit init-->
     <script src="../assets/js/init-scripts/peitychart/peitychart.init.js"></script>
     <!-- scripit init-->
-
+    <script>
+		function Validar(){
+			var categoria = $("#categoria").val();
+            /*var accion=$('#accion').val();
+			
+			if(categoria==''){
+				alert('Debe completar ls categoria');
+			}
+			else{
+				$.ajax({
+                    async:true,
+                    type: "POST",
+                    url: "../controllers/categoriaController.php",                    
+                    data:$('#formulario').serialize(),
+                    beforeSend:function(){
+                        alert('comienzo a procesar');
+                    },
+                    success:function(resultado) {
+                        alert(resultado);
+                        return true;
+                    },
+                    timeout:8000,
+                    error:function(){
+                        alert('mensaje de error');
+                        return false;
+                    }
+                });
+			}*/
+			alert('aaa');			
+		}
+	</script>
 </body>
 
 </html>

@@ -33,7 +33,6 @@
 
     <?php
         require_once($_SERVER['DOCUMENT_ROOT'] . '/Left-panel.php');
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/controllers/categoriaController.php');
     ?>
 
     <!-- Left Panel -->
@@ -101,20 +100,25 @@
     <!-- Right Panel -->
 
 
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="../vendors/jquery/dist/jquery.js"></script>
     <script src="../vendors/popper.js/dist/umd/popper.min.js"></script>
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../assets/js/main.js"></script>
+
+    
 
     <script src="../vendors/peity/jquery.peity.min.js"></script>
     <!-- scripit init-->
     <script src="../assets/js/init-scripts/peitychart/peitychart.init.js"></script>
     <!-- scripit init-->
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>    
+
     <script>
 		function Validar(){
 			var categoria = $("#categoria").val();
-            /*var accion=$('#accion').val();
-			
+            var accion=$('#accion').val();
+            
 			if(categoria==''){
 				alert('Debe completar ls categoria');
 			}
@@ -137,8 +141,7 @@
                         return false;
                     }
                 });
-			}*/
-			alert('aaa');			
+			}		
 		}
 	</script>
 </body>

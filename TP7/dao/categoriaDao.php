@@ -28,10 +28,8 @@ class categoriaDao {
 		$query = 'select * from categoriasproductos';
 		$STH = $DBH->prepare($query);
 		$STH->setFetchMode(PDO::FETCH_ASSOC);
-		$params = array(                                
-			":idcategoriasproductos" => $id
-		);
-		$STH->execute($params);
+		
+		$STH->execute();
 		$DBH=null;
 		if ($STH->rowCount() > 0) {
 			while($row = $STH->fetch()) {
@@ -57,7 +55,8 @@ class categoriaDao {
         $id=$DBH->lastInsertId();
         $DBH=null;
         $STH=null;
-        return $id;
+        $item->id=$id;
+        return $item;
     }// nuevo    
 
     public static function modificar($item) {

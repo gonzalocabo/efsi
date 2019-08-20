@@ -28,7 +28,8 @@
     <!-- Left Panel -->
 
     <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/Left-panel.php');
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/Left-panel.php');        
+
     ?>
 
     <!-- Left Panel -->
@@ -74,23 +75,6 @@
                                 <th scope="col" class="text-center">Enlaces</th>
                             </tr>
                         </thead>
-                        <tbody class="text-center">
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Maiameee</td>
-                                <td><a href="#">Modificar</a><a href="#" class="ml-3">Eliminar</a><a href="#" class="ml-3">Desactivar</a></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Ricardo Fort</td>
-                                <td><a href="#">Modificar</a><a href="#" class="ml-3">Eliminar</a><a href="#" class="ml-3">Activar</a></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Administrador</td>
-                                <td><a href="#">Modificar</a><a href="#" class="ml-3">Eliminar</a><a href="#" class="ml-3">Activar</a></td>
-                            </tr>
-                        </tbody>
                     </table>
 
                 </div>
@@ -128,24 +112,49 @@
     <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
     <script src="../vendors/datatables.net-buttons/js/buttons.colVis.min.js"></script>
     <!--<script src="../assets/js/init-scripts/data-table/datatables-init.js"></script>-->
-    <script>
-        (function ($) {
-		$('#mi-grilla').DataTable({
-        "language": {
-            "lengthMenu": "Mostrando _MENU_ registros por pagina",
-            "zeroRecords": "Nada para mostrar",
-            "info": "Mostrando pagina _PAGE_ de _PAGES_",
-            "infoEmpty": "No hay registros disponibles",
-            "infoFiltered": "(filtrado de _MAX_ registros totales)",
-            "search": "Buscar:",
-            "paginate": {
-                "previous": "Anterior",
-                "next": "Siguiente"
-            }
-        }
-        });
-		
-	    })(jQuery);
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>    
+    <script>  
+            (function ($) {  
+                $.ajax({
+                    async:true,
+                    type: "POST",
+                    url: "../controllers/categoriaController.php",
+                    data: "accion=listar",
+                    beforeSend:function(){
+                        alert('comienzo a procesar');
+                    },
+                    success:function(resultado) {
+                        alert(resultado);
+                        resultado=JSON.parse(resultado);
+                        $('#mi-grilla').DataTable({
+                            data: resultado,
+                            columns: [
+                                {data: "#", title : "resultado.id"},
+                                {data: "Nombre",title : "resultado.nombre"}      
+                            ],
+                            "language": {
+                                "lengthMenu": "Mostrando _MENU_ registros por pagina",
+                                "zeroRecords": "Nada para mostrar",
+                                "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                                "infoEmpty": "No hay registros disponibles",
+                                "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                                "search": "Buscar:",
+                                "paginate": {
+                                    "previous": "Anterior",
+                                    "next": "Siguiente"
+                                }
+                            }
+                        });
+                        return true;
+                    },
+                    timeout:8000,
+                    error:function(){
+                        alert('mensaje de error');
+                        return false;
+                    }
+                });
+            })(jQuery);
     </script>
 </body>
       

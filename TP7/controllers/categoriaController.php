@@ -1,18 +1,21 @@
 <?php 
 include_once ($_SERVER["DOCUMENT_ROOT"] . '/dao/categoriaDao.php');
+
 if(isset($_POST['accion'])){
     $accion=$_POST['accion'];
+    
 
     switch ($accion) {
         case 'nuevo':
-            $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
-            
-            $item = new categoria();
-            $item->nombre = $nombre;
-            
-            $resultado = categoriaDao::nuevo($item);
-            
-            echo json_encode($resultado);
+            if(isset($_POST['categoria'])){
+                $nombre = $_POST['categoria'];
+                $item = new categoria();
+                $item->nombre = $nombre;
+                $resultado = categoriaDao::nuevo($item);
+                echo json_encode($resultado);
+            }else{
+                echo json_encode("error");
+            }            
             break;    
         case 'listar':
             $resultado = categoriaDao::ObtenerTodos();
@@ -40,6 +43,8 @@ if(isset($_POST['accion'])){
             }
             break;
     }
+}else{
+    echo json_encode("Accion nula");
 }
 
 ?>

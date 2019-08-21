@@ -19,7 +19,6 @@ if(isset($_POST['accion'])){
             break;    
         case 'listar':
             $resultado = categoriaDao::ObtenerTodos();
-            
             echo json_encode($resultado);
             break;    
         case 'obtenerporid':

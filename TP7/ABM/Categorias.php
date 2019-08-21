@@ -98,9 +98,6 @@
     <!-- scripit init-->
     <script src="../assets/js/init-scripts/peitychart/peitychart.init.js"></script>
     <!-- scripit init-->
-
-
-
     <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="../vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
@@ -111,9 +108,8 @@
     <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
     <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
     <script src="../vendors/datatables.net-buttons/js/buttons.colVis.min.js"></script>
-    <!--<script src="../assets/js/init-scripts/data-table/datatables-init.js"></script>-->
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>    
+    <script src="../assets/js/init-scripts/data-table/datatables-init.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>    -->
     <script>  
             (function ($) {  
                 $.ajax({
@@ -122,16 +118,15 @@
                     url: "../controllers/categoriaController.php",
                     data: "accion=listar",
                     beforeSend:function(){
-                        alert('comienzo a procesar');
                     },
                     success:function(resultado) {
-                        alert(resultado);
-                        resultado=JSON.parse(resultado);
+                        var o=JSON.parse(resultado);
                         $('#mi-grilla').DataTable({
-                            data: resultado,
+                            data: o,
                             columns: [
-                                {data: "#", title : "resultado.id"},
-                                {data: "Nombre",title : "resultado.nombre"}      
+                                {"data": "id"},
+                                {"data": "nombre"},
+                                {"display": '<a href="#">Modificar</a>'}
                             ],
                             "language": {
                                 "lengthMenu": "Mostrando _MENU_ registros por pagina",

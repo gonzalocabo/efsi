@@ -133,7 +133,7 @@
                                 data: null,
                                 className: "text-center",                            
                                 render: function (data){
-                                return '<a class="far fa-edit mr-5" href="javascript:editar('+ data.id +');"></a><a href="javascript:eliminar('+ data.id +');">Eliminar</a>';
+                                return '<a class="fa fa-edit mr-5" href="javascript:editar('+ data.id +');"></a><a class="fa fa-trash" href="javascript:eliminar('+ data.id +');"></a>';
                                 }
                             }
                         ],

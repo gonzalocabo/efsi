@@ -31,11 +31,18 @@ if(isset($_POST['accion'])){
             }		
             break;    
         case 'modificar':
+            if(isset($_POST['id'])&&isset($_POST['categoria'])){
+                $cat=new categoria();
+                $cat->id=$_POST['id'];
+                $cat->nombre=$_POST['categoria'];
+                $resultado = categoriaDao::modificar($cat);
+                echo json_encode($resultado);
+            }
             //logica de modificacion
             break;
         case 'eliminar':
             if(isset($_POST['id'])){
-                categoriaDao::eliminar($id);
+                categoriaDao::eliminar($_POST['id']);
                 echo json_encode("true");
             }else{
                 echo json_encode("Error, id nulo");

@@ -1,3 +1,13 @@
+<?php
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
+    $accion = 'modificar';
+}else{
+    $id = 0;
+    $accion = 'nuevo';
+}
+
+?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -60,9 +70,9 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li><a href="#">Modificaiones</a></li>
-                            <li><a href="#">Categorias</a></li>
-                            <li class="active">Ingresar categoria</li>
+                            <li><a href="">Modificaciones</a></li>
+                            <li><a href="../ABM/Categorias.php">Categorias</a></li>
+                            <li class="active" id="Actual">Ingresar categoria</li>
                         </ol>
                     </div>
                 </div>
@@ -77,9 +87,10 @@
                 <div class="card-body card-block">
                     <form action="" method="post" class="form-horizontal" id="formulario">
                         <div class="row form-group">
-                            <input type="hidden" name="accion" id="accion" value="nuevo" />
+                            <input type="hidden" name="id" id="id" value="<?php echo $id; ?>" />
+                            <input type="hidden" name="accion" id="accion" value="<?php echo $accion; ?>" />
                             <div class="col col-md-3"><label for="hf-email" class=" form-control-label">Categoria:</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="categoria" name="categoria" placeholder="Ingrese categoria..." class="form-control"><span class="help-block">Por favor ingrese la categoria</span></div>
+                            <div class="col-12 col-md-9"><input type="text" id="categoria" name="categoria"  placeholder="Ingrese categoria..." class="form-control"><span class="help-block" id="spanPorfavor">Por favor ingrese la categoria</span></div>
                         </div>
                     </form>
                 </div>
@@ -112,15 +123,40 @@
     <script src="../assets/js/init-scripts/peitychart/peitychart.init.js"></script>
     <!-- scripit init-->
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
+      
 
     <script>
-		function Validar(){
+            (function($){
+                var id= <?php echo $id;?>;
+                if(id!=0){
+                    $.ajax({
+                        async:true,
+                        type: "POST",
+                        url: "../controllers/categoriaController.php",
+                        data: 'accion=obtenerporid&id='+id,
+                        success:function(resultado) {
+                            var o=JSON.parse(resultado);
+                            $('#categoria').val(o.nombre);
+                            $('#spanPorfavor').hide();
+                            $('#Actual').text('Modificar Categoria');
+                        },
+                        timeout:8000,
+                        error:function(){
+                            alert('mensaje de error');
+                            return false;
+                        }
+                    });
+                }
+                
+            })(jQuery);
+
+    		function Validar(){
 			var categoria = $("#categoria").val();
             var accion=$('#accion').val();
             
 			if(categoria==''){
-				alert('Debe completar ls categoria');
+				alert('Debe completar la categoria');
 			}
 			else{
 				$.ajax({
@@ -129,10 +165,10 @@
                     url: "../controllers/categoriaController.php",                    
                     data:$('#formulario').serialize(),
                     beforeSend:function(){
-                        alert('comienzo a procesar');
+                        
                     },
                     success:function(resultado) {
-                        alert(resultado);
+                        window.location="../ABM/Categorias.php"
                         return true;
                     },
                     timeout:8000,

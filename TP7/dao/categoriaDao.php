@@ -61,6 +61,21 @@ class categoriaDao {
 
     public static function modificar($item) {
         //aca va la logica para modificar. Recibe por parametro un objeto de tipo categoria
+        $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
+        $query = 'UPDATE categoriasproductos SET nombre=:nombre where idcategoriasproductos=:id';
+        $STH = $DBH->prepare($query);
+		$STH->setFetchMode(PDO::FETCH_ASSOC);
+		$params = array(      
+            ":id"=>$item->id,                
+            ":nombre" => $item->nombre
+		);
+		$STH->execute($params);
+        if ($STH->rowCount() < 1) {
+            $item='';
+        }
+        $DBH=null;
+        $STH=null;
+        return $item;
     }// modificar
 
     public static function eliminar($id) {
@@ -71,7 +86,12 @@ class categoriaDao {
 		$params = array(                                
             ":idcategoriasproductos" => $id
         );
-		$STH->execute($params);
+        $STH->execute($params);
+        if ($STH->rowCount() < 1) {
+            $item=false;
+        }else{
+            $item=true;
+        }
         $DBH=null;
         return $item;
         //aca va la logica para eliminar

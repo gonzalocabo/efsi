@@ -64,7 +64,7 @@
             </div>
         </div>
 
-        <div class="content mt-3">
+        <div class="content mt-3 col-md-12 col-sm-12">
         <div class="card">
                 <div class="card-body">
                     <table id="mi-grilla" class="table table-striped table-bordered">
@@ -76,9 +76,10 @@
                             </tr>
                         </thead>
                     </table>
-
                 </div>
             </div>
+            <button type="button" class="btn btn-danger col-md-12 col-sm-12" onclick="NuevaCategoria();">Nueva categoria</button>
+
         </div><!-- .content -->
 
 
@@ -109,47 +110,81 @@
     <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
     <script src="../vendors/datatables.net-buttons/js/buttons.colVis.min.js"></script>
     <script src="../assets/js/init-scripts/data-table/datatables-init.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <!--<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>    -->
     <script>  
-            (function ($) {  
-                $.ajax({
-                    async:true,
-                    type: "POST",
-                    url: "../controllers/categoriaController.php",
-                    data: "accion=listar",
-                    beforeSend:function(){
-                    },
-                    success:function(resultado) {
-                        var o=JSON.parse(resultado);
-                        $('#mi-grilla').DataTable({
-                            data: o,
-                            columns: [
-                                {"data": "id"},
-                                {"data": "nombre"},
-                                {"display": '<a href="#">Modificar</a>'}
-                            ],
-                            "language": {
-                                "lengthMenu": "Mostrando _MENU_ registros por pagina",
-                                "zeroRecords": "Nada para mostrar",
-                                "info": "Mostrando pagina _PAGE_ de _PAGES_",
-                                "infoEmpty": "No hay registros disponibles",
-                                "infoFiltered": "(filtrado de _MAX_ registros totales)",
-                                "search": "Buscar:",
-                                "paginate": {
-                                    "previous": "Anterior",
-                                    "next": "Siguiente"
+        (function ($) {  
+            $.ajax({
+                async:true,
+                type: "POST",
+                url: "../controllers/categoriaController.php",
+                data: "accion=listar",
+                beforeSend:function(){
+                },
+                success:function(resultado) { 
+                    var o=JSON.parse(resultado);
+                    $('#mi-grilla').DataTable({
+                        data: o,
+                        columns: [
+                            {"data": "id"},
+                            {"data": "nombre"},
+                            {
+                                data: null,
+                                className: "text-center",                            
+                                render: function (data){
+                                return '<a class="far fa-edit mr-5" href="javascript:editar('+ data.id +');"></a><a href="javascript:eliminar('+ data.id +');">Eliminar</a>';
                                 }
                             }
-                        });
-                        return true;
-                    },
-                    timeout:8000,
-                    error:function(){
-                        alert('mensaje de error');
-                        return false;
-                    }
+                        ],
+                        "language": {
+                            "lengthMenu": "Mostrando _MENU_ registros por pagina",
+                            "zeroRecords": "Nada para mostrar",
+                            "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                            "infoEmpty": "No hay registros disponibles",
+                            "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                            "search": "Buscar:",
+                            "paginate": {
+                                "previous": "Anterior",
+                                "next": "Siguiente"
+                            }
+                        }
+                    });
+                    return true;
+                },
+                timeout:8000,
+                error:function(){
+                    alert('mensaje de error');
+                    return false;
+                }
+            });
+        })(jQuery);
+
+    
+
+        function NuevaCategoria(){
+            window.location="../Formularios/Categoria.php";
+        }
+        function editar(id){
+            window.location="../Formularios/Categoria.php?id="+id;
+        }
+        function eliminar(id){
+            var r=confirm("¿Seguro que desea eliminar la categoria?")
+            if(r==true){
+                const formData = new FormData();
+    
+                formData.append('accion', 'eliminar');
+                formData.append('id', id);
+                axios.post('../controllers/categoriaController.php',formData)
+                .then(function (response) {
+                    location.reload();
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
                 });
-            })(jQuery);
+            }
+        }
     </script>
 </body>
       

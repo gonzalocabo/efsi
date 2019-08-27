@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Sufee Admin - HTML5 Admin Template</title>
+        <title>Fotos slider - Mi Tienda Online</title>
         <meta name="description" content="Sufee Admin - HTML5 Admin Template">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -121,9 +121,9 @@
                 $('#mi-grilla').DataTable({
                     data: response.data,
                     columns: [
-                        {"data": "id"},
-                        {"data": "nombre"},
-                        {"data": "foto"},
+                        {"data": "id", className: "text-center"},
+                        {"data": "nombre", className: "text-center"},
+                        {"data": "foto", className: "text-center"},
                         {
                             data: null,
                             className: "text-center",                            

@@ -13,13 +13,13 @@ if(isset($_GET['id'])){
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" lang="en">
+<html class="no-js" lang="es">
 <!--<![endif]-->
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sufee Admin - HTML5 Admin Template</title>
+    <title id="TituloPagina">Nueva categoria - Mi Tienda Online</title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -98,7 +98,7 @@ if(isset($_GET['id'])){
                     <button type="submit" class="btn btn-success btn-sm" onclick="Validar();">
                         <i class="fa fa-dot-circle-o"></i> Aceptar
                     </button>
-                    <button type="reset" class="btn btn-danger btn-sm">
+                    <button type="reset" class="btn btn-danger btn-sm" onclick="Back();">
                         <i class="fa fa-ban"></i> Cancelar
                     </button>
                 </div>
@@ -140,6 +140,7 @@ if(isset($_GET['id'])){
                             $('#categoria').val(o.nombre);
                             $('#spanPorfavor').hide();
                             $('#Actual').text('Modificar Categoria');
+                            $('#TituloPagina').text('Modificar categoria - Mi Tienda Online');
                         },
                         timeout:8000,
                         error:function(){
@@ -152,33 +153,37 @@ if(isset($_GET['id'])){
             })(jQuery);
 
     		function Validar(){
-			var categoria = $("#categoria").val();
-            var accion=$('#accion').val();
-            
-			if(categoria==''){
-				alert('Debe completar la categoria');
-			}
-			else{
-				$.ajax({
-                    async:true,
-                    type: "POST",
-                    url: "../controllers/categoriaController.php",                    
-                    data:$('#formulario').serialize(),
-                    beforeSend:function(){
-                        
-                    },
-                    success:function(resultado) {
-                        window.location="../ABM/Categorias.php"
-                        return true;
-                    },
-                    timeout:8000,
-                    error:function(){
-                        alert('mensaje de error');
-                        return false;
-                    }
-                });
-			}		
-		}
+                var categoria = $("#categoria").val();
+                var accion=$('#accion').val();
+                
+                if(categoria==''){
+                    alert('Debe completar la categoria');
+                }
+                else{
+                    $.ajax({
+                        async:true,
+                        type: "POST",
+                        url: "../controllers/categoriaController.php",                    
+                        data:$('#formulario').serialize(),
+                        beforeSend:function(){
+                            
+                        },
+                        success:function(resultado) {
+                            window.location="../ABM/Categorias.php"
+                            return true;
+                        },
+                        timeout:8000,
+                        error:function(){
+                            alert('mensaje de error');
+                            return false;
+                        }
+                    });
+                }		
+		    }
+
+            function Back(){
+                window.history.back();
+            }
 	</script>
 </body>
 

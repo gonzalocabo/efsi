@@ -20,7 +20,7 @@ if(isset($_GET['id'])){
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sufee Admin - HTML5 Admin Template</title>
+    <title>Nueva foto slider - Mi Tienda Online</title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -101,7 +101,7 @@ if(isset($_GET['id'])){
                     <button type="submit" class="btn btn-success btn-sm" onclick="Validar();">
                         <i class="fa fa-dot-circle-o"></i> Aceptar
                     </button>
-                    <button type="reset" class="btn btn-danger btn-sm">
+                    <button type="reset" class="btn btn-danger btn-sm" onclick="Back();">
                         <i class="fa fa-ban"></i> Cancelar
                     </button>
                 </div>
@@ -149,19 +149,23 @@ if(isset($_GET['id'])){
         function Validar(){
             var nombre = $("#nombre").val();
             var foto = $("#foto").val();
-            var accion=<?php echo $accion; ?>;
+            var accion= "<?php echo $accion; ?>";
             if(nombre==''||(foto==""&&accion=="nuevo")){
 				alert('Debe completar todos los campos');
 			}else{
                 const formData = new FormData();
-                formData.append('accion',<?php echo $accion; ?>);
+                formData.append('accion',accion);
                 formData.append('id',<?php echo $id;?>);
                 formData.append('nombre',nombre);
-                formData.append('foto', foto);
+                if(accion=="modificar"&&foto==""){
+                    formData.append('foto', "nofoto");
+                }else{
+                    formData.append('foto', foto);
+                }
                 axios.post('../controllers/sliderController.php', formData)
                 .then(function (response) {
-                    
                     console.log(response);
+                    alert(response.data);
                     window.location="../ABM/Slider.php"
                 })
                 .catch(function (error) {
@@ -169,7 +173,9 @@ if(isset($_GET['id'])){
                 });
             }
         }
-        
+        function Back(){
+                window.history.back();
+            }
     </script>
 
 </body>

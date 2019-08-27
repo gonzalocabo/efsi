@@ -1,3 +1,14 @@
+<?php
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
+    $accion = 'modificar';
+}else{
+    $id = 0;
+    $accion = 'nuevo';
+}
+
+?>
+
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -75,19 +86,19 @@
                     <strong>Ingresar slider</strong>
                 </div>
                 <div class="card-body card-block">
-                    <form action="" method="post" class="form-horizontal">
+                    <form action="" method="post" id="formulario" class="form-horizontal">
                         <div class="row form-group">
                             <div class="col col-md-3"><label for="hf-email" class=" form-control-label">Nombre:</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="hf-email" name="hf-email" placeholder="Ingrese nombre" class="form-control"><span class="help-block">Por favor ingrese el nombre</span></div>
+                            <div class="col-12 col-md-9"><input type="text" id="nombre" name="nombre" placeholder="Ingrese nombre" class="form-control"><span id="spanNombre" class="help-block">Por favor ingrese el nombre</span></div>
                         </div>
                         <div class="row form-group">
                                 <div class="col col-md-3"><label for="file-input" class=" form-control-label">Foto</label></div>
-                                <div class="col-12 col-md-9"><input type="file" id="foto" name="foto" class="form-control-file"></div>
+                                <div class="col-12 col-md-9"><input accept="image/x-png,image/jpeg" type="file" id="foto" name="foto" class="form-control-file"></div>
                             </div>
                     </form>
                 </div>
                 <div class="card-footer"style="text-align:center">
-                    <button type="submit" class="btn btn-success btn-sm">
+                    <button type="submit" class="btn btn-success btn-sm" onclick="Validar();">
                         <i class="fa fa-dot-circle-o"></i> Aceptar
                     </button>
                     <button type="reset" class="btn btn-danger btn-sm">
@@ -102,6 +113,7 @@
 
     <!-- Right Panel -->
 
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
 
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <script src="../vendors/popper.js/dist/umd/popper.min.js"></script>
@@ -112,6 +124,53 @@
     <!-- scripit init-->
     <script src="../assets/js/init-scripts/peitychart/peitychart.init.js"></script>
     <!-- scripit init-->
+
+    <script src="../vendors/axios/axios.min.js"></script>
+
+
+    <script>
+        (function($){
+            var id= <?php echo $id;?>;
+            if(id!=0){
+                const formData = new FormData();
+                formData.append('id', id);
+                formData.append('accion', 'obtenerporid');
+                axios.post('../controllers/sliderController.php',formData)
+                .then(function (response) {
+                    $('#nombre').val(response.data.nombre);
+                    $('#spanNombre').hide();
+                    $('#Actual').text('Modificar Categoria');
+                })
+                .catch(function (error) {
+                console.log(error);
+                });
+            }
+        })(jQuery);
+        function Validar(){
+            var nombre = $("#nombre").val();
+            var foto = $("#foto").val();
+            var accion=<?php echo $accion; ?>;
+            if(nombre==''||(foto==""&&accion=="nuevo")){
+				alert('Debe completar todos los campos');
+			}else{
+                const formData = new FormData();
+                formData.append('accion',<?php echo $accion; ?>);
+                formData.append('id',<?php echo $id;?>);
+                formData.append('nombre',nombre);
+                formData.append('foto', foto);
+                axios.post('../controllers/sliderController.php', formData)
+                .then(function (response) {
+                    
+                    console.log(response);
+                    window.location="../ABM/Slider.php"
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            }
+        }
+        
+    </script>
 
 </body>
 

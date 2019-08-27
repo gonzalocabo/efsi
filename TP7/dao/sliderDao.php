@@ -51,8 +51,8 @@ class sliderDao {
 		$STH = $DBH->prepare($query);
 		$STH->setFetchMode(PDO::FETCH_ASSOC);
 		$params = array(                                
-            ":nombre" => $item->nombre;
-            ":foto" => $item->foto;
+            ":nombre" => $item->nombre,
+            ":foto" => $item->foto
 		);
 		$STH->execute($params);
         $item->id=$DBH->lastInsertId();
@@ -72,8 +72,8 @@ class sliderDao {
 		$STH = $DBH->prepare($query);
 		$STH->setFetchMode(PDO::FETCH_ASSOC);
 		$params = array(                                
-            ":idslider" => $id;
-        )
+            ":idslider" => $id
+        );
 		$STH->execute($params);
         $DBH=null;
          return $item;

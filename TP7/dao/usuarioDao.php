@@ -58,11 +58,11 @@ class usuarioDao {
 		$STH = $DBH->prepare($query);
 		$STH->setFetchMode(PDO::FETCH_ASSOC);
 		$params = array(                                
-            ":nombre" => $item->nombre;
-            ":apellido" => $item->apellido;
-            ":mail" => $item->mail;
-            ":estado" => $item->estado;
-            ":idcategoria" => $item->categoria;
+            ":nombre" => $item->nombre,
+            ":apellido" => $item->apellido,
+            ":mail" => $item->mail,
+            ":estado" => $item->estado,
+            ":idcategoria" => $item->categoria
 		);
 		$STH->execute($params);
         $item->id=$DBH->lastInsertId();
@@ -81,13 +81,47 @@ class usuarioDao {
 		$STH = $DBH->prepare($query);
 		$STH->setFetchMode(PDO::FETCH_ASSOC);
 		$params = array(                                
-            ":idusuario" => $id;
-        )
+            ":idusuario" => $id
+        );
 		$STH->execute($params);
         $DBH=null;
         return $item;
         //aca va la logica para eliminar
     }// eliminar
+
+    public static function activar($id) {
+        $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
+        $query = 'UPDATE usuarios SET estado=1 where idusuario=:id';
+        $params = array( 
+            ":id"=>$id
+        );        
+        $STH = $DBH->prepare($query);
+		$STH->setFetchMode(PDO::FETCH_ASSOC);
+        $STH->execute($params);
+        if ($STH->rowCount() < 1) {
+            $item='error consulta';
+        }
+        $DBH=null;
+        $STH=null;
+        return $item;
+    }
+
+    public static function desactivar($id) {
+        $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
+        $query = 'UPDATE usuarios SET estado=0 where idusuario=:id';
+        $params = array( 
+            ":id"=>$id
+        );        
+        $STH = $DBH->prepare($query);
+		$STH->setFetchMode(PDO::FETCH_ASSOC);
+        $STH->execute($params);
+        if ($STH->rowCount() < 1) {
+            $item='error consulta';
+        }
+        $DBH=null;
+        $STH=null;
+        return $item;
+    }
 
 }
 ?>

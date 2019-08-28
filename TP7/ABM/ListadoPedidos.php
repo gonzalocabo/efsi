@@ -18,6 +18,10 @@
         <link rel="stylesheet" href="../vendors/selectFX/css/cs-skin-elastic.css">
         <link rel="stylesheet" href="../assets/css/style.css">
 
+        <link rel="stylesheet" href="../vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" href="../vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css">
+
+
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
     </head>
     <body>
@@ -61,7 +65,7 @@
         <div class="content mt-3">
         <div class="card">
                 <div class="card-body">
-                    <table class="table">
+                <table id="mi-grilla" class="table table-striped table-bordered">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col" class="text-center">#</th>
@@ -69,33 +73,10 @@
                                 <th scope="col" class="text-center">Codigo de compra</th>
                                 <th scope="col" class="text-center">Estado del envio</th>
                                 <th scope="col" class="text-center">Estado del pago</th>
+                                <th scope="col" class="text-center">Enlaces</th>
                             </tr>
                         </thead>
-                        <tbody class="text-center">
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>R.fort555</td>
-                                <td>CHVK01AN</td>
-                                <td>En camino</td>
-                                <td>Pago mediante mercadopago OK</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>J.Perez42</td>
-                                <td>OANDIKA912</td>
-                                <td>No enviado</td>
-                                <td>Pago mediante mercadopago OK</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>R.epabh557</td>
-                                <td>IIAF7A1F</td>
-                                <td>Llego a destino</td>
-                                <td>Pago mediante mercadopago con contracargos</td>
-                            </tr>
-                        </tbody>
                     </table>
-
                 </div>
             </div>
         </div><!-- .content -->
@@ -116,6 +97,62 @@
     <script src="../assets/js/init-scripts/peitychart/peitychart.init.js"></script>
     <!-- scripit init-->
 
+
+    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="../vendors/jszip/dist/jszip.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+    <script src="../assets/js/init-scripts/data-table/datatables-init.js"></script>
+    <script src="../vendors/axios/axios.min.js"></script>
+
+
+    <script>
+        (function ($) {  
+            const formData = new FormData();
+            formData.append('accion', 'listar');
+            axios.post('../controllers/pedidoController.php',formData)
+            .then(function (response) {
+                $('#mi-grilla').DataTable({
+                    data: response.data,
+                    columns: [
+                        {"data": "id", className: "text-center"},
+                        {"data": "nombreDelUsuario", className: "text-center"},
+                        {"data": "codigoCompra", className: "text-center"},
+                        {"data": "estadoEnvio", className: "text-center"},
+                        {"data": "estadoPago", className: "text-center"},
+                        {
+                            data: null,
+                            className: "text-center",                            
+                            render: function (data){
+                            return '<a class="fa fa-edit mr-5" href="javascript:editar('+ data.id +');"></a><a class="fa fa-trash" href="javascript:eliminar('+ data.id +');"></a>';
+                            }
+                        }
+                    ],
+                    "language": {
+                        "lengthMenu": "Mostrando _MENU_ registros por pagina",
+                        "zeroRecords": "Nada para mostrar",
+                        "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                        "infoEmpty": "No hay registros disponibles",
+                        "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                        "search": "Buscar:",
+                        "paginate": {
+                            "previous": "Anterior",
+                            "next": "Siguiente"
+                        }
+                    }
+                });
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+                
+        })(jQuery);
+    </script>
 </body>
       
 </html>

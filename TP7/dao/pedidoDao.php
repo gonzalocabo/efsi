@@ -8,6 +8,26 @@ class pedidoDao {
 
     public static function ObtenerTodos() {
         //devuelve un array de objetos de tipo pedido
+        $arrayObjetos= array();
+        $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
+		$query = 'select pedidos.idpedidos, usuarios.nombre, pedidos.codigocompra, pedidos.estadoenvio, pedidos.estadopago from pedidos inner join usuarios on pedidos.idusuario=usuarios.idusuario';
+		$STH = $DBH->prepare($query);
+		$STH->setFetchMode(PDO::FETCH_ASSOC);
+		
+		$STH->execute();
+		$DBH=null;
+		if ($STH->rowCount() > 0) {
+			while($row = $STH->fetch()) {
+                $Objeto=new pedido();
+                $Objeto->id=$row['idpedidos'];
+                $Objeto->nombreDelUsuario=$row['nombre'];
+                $Objeto->codigoCompra=$row['codigocompra'];
+                $Objeto->estadoEnvio=$row['estadoenvio'];
+                $Objeto->estadoPago=$row['estadopago'];
+                $arrayObjetos[]=$Objeto;
+			}
+        }
+         return $arrayObjetos; 
     }
 
     public static function nuevo($item) {

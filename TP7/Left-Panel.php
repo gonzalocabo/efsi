@@ -28,10 +28,10 @@
                     <h3 class="menu-title">Listados</h3><!-- /.menu-title -->
 
                     <li>
-                        <a href="/ListadoPedidos.php"> <i class="menu-icon fa fa-list-alt"></i>Listado de pedidos </a>
+                        <a href="/ABM/ListadoPedidos.php"> <i class="menu-icon fa fa-list-alt"></i>Listado de pedidos </a>
                     </li>
                     <li>
-                        <a href="/ListadoUsuarios.php"> <i class="menu-icon fa fa-list-alt"></i>Listado de usuarios</a>
+                        <a href="/ABM/ListadoUsuarios.php"> <i class="menu-icon fa fa-list-alt"></i>Listado de usuarios</a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->

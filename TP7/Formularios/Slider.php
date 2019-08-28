@@ -165,7 +165,6 @@ if(isset($_GET['id'])){
                 axios.post('../controllers/sliderController.php', formData)
                 .then(function (response) {
                     console.log(response);
-                    alert(response.data);
                     window.location="../ABM/Slider.php"
                 })
                 .catch(function (error) {

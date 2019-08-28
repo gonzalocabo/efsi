@@ -7,10 +7,22 @@ if(isset($_POST['accion'])){
 
     switch ($accion) {
         case 'nuevo':
-            if(isset($_POST['producto'])){
-                $nombre = $_POST['producto'];
+            if(isset($_POST['nombre'])&&isset($_POST['codigo'])&&isset($_POST['precio'])&&isset($_POST['descuento'])&&isset($_POST['stockMinimo'])&&isset($_POST['stockActual'])&&isset($_POST['categoria'])&&isset($_POST['descripcionCorta'])&&isset($_POST['descripcionLarga'])&&isset($_POST['destacado'])&&isset($_POST['onSale'])&&isset($_POST['mostrarHome'])){
                 $item = new producto();
-                $item->nombre = $nombre;
+                $item->nombre = $_POST['nombre'];
+                $item->codigo=$_POST['codigo'];
+                $item->precio=$_POST['precio'];
+                $item->descuento=$_POST['descuento'];
+                $item->stockMinimo=$_POST['stockMinimo'];
+                $item->stockActual=$_POST['stockActual'];
+                $item->categoria=$_POST['categoria'];
+                $item->categoria=$_POST['foto'];
+                $item->categoria=$_POST['video'];
+                $item->descripcionCorta=$_POST['descripcionCorta'];
+                $item->descripcionLarga=$_POST['descripcionLarga'];
+                $item->destacado=$_POST['destacado'];
+                $item->onSale=$_POST['onSale'];
+                $item->mostrarHome=$_POST['mostrarHome'];
                 $resultado = productoDao::nuevo($item);
                 echo json_encode($resultado);
             }else{

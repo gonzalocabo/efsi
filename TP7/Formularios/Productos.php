@@ -1,3 +1,14 @@
+<?php
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
+    $accion = 'modificar';
+}else{
+    $id = 0;
+    $accion = 'nuevo';
+}
+
+?>
+
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -62,7 +73,7 @@
                         <ol class="breadcrumb text-right">
                             <li><a href="#">Modificar</a></li>
                             <li>Productos</li>
-                            <li class="active">Insertar productos</li>
+                            <li class="active" id="Actual">Insertar productos</li>
                         </ol>
                     </div>
                 </div>
@@ -147,10 +158,10 @@
                         
                         </form>
                         <div class="card-footer text-center">
-                            <button type="submit" class="btn btn-success btn-sm">
+                            <button type="submit" class="btn btn-success btn-sm" onclick="Validar();">
                                 <i class="fa fa-dot-circle-o"></i> Aceptar
                             </button>
-                            <button type="reset" class="btn btn-danger btn-sm">
+                            <button type="reset" class="btn btn-danger btn-sm" onclick="Back();">
                                 <i class="fa fa-ban"></i> Cancelar
                             </button>
                         </div>
@@ -173,6 +184,62 @@
     <!-- scripit init-->
     <script src="../assets/js/init-scripts/peitychart/peitychart.init.js"></script>
     <!-- scripit init-->
+
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="../vendors/axios/axios.min.js"></script>
+
+    <script>
+        (function($){
+            var id= <?php echo $id;?>;
+            if(id!=0){
+                alert("Editar");
+                const formData = new FormData();
+                formData.append('id', id);
+                formData.append('accion', 'obtenerporid');
+                axios.post('../controllers/sliderController.php',formData)
+                .then(function (response) {
+                    $('#nombre').val(response.data.nombre);
+                    $('#spanNombre').hide();
+                    $('#Actual').text('Modificar Producto');
+                })
+                .catch(function (error) {
+                console.log(error);
+                });
+            }
+        })(jQuery);
+
+        function Validar(){
+            var nombre = $("#nombre").val();
+            var foto = $("#foto").val();
+            var accion= "<?php echo $accion; ?>";
+            if(nombre==''||(foto==""&&accion=="nuevo")){
+				alert('Debe completar todos los campos');
+			}else{
+                const formData = new FormData();
+                formData.append('accion',accion);
+                formData.append('id',<?php echo $id;?>);
+                formData.append('nombre',nombre);
+                if(accion=="modificar"&&foto==""){
+                    formData.append('foto', "nofoto");
+                }else{
+                    formData.append('foto', foto);
+                }
+                axios.post('../controllers/sliderController.php', formData)
+                .then(function (response) {
+                    console.log(response);
+                    alert(response.data);
+                    window.location="../ABM/Slider.php"
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            }
+        }
+
+        function Back(){
+            window.history.back();
+        }
+    </script>
 
 </body>
 

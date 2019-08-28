@@ -73,19 +73,19 @@ class productoDao {
 		$STH = $DBH->prepare($query);
 		$STH->setFetchMode(PDO::FETCH_ASSOC);
 		$params = array(                                
-            ":nombre" => $item->nombre;
-            ":codigo" => $item->codigo;
-            ":precio" => $item->precio;
-            ":descuento" => $item->descuento;
-            ":stockMinimo" => $item->stockMinimo;
-            ":stockActual" => $item->stockActual;
-            ":foto" => $item->foto;
-            ":video" => $item->video;
-            ":descripcionCorta" => $item->descripcionCorta;
-            ":descripcionLarga" => $item->descripcionLarga;
-            ":destacado" => $item->destacado;
-            ":onSale" => $item->onSale;
-            ":mostrarHome" => $item->mostrarHome;
+            ":nombre" => $item->nombre,
+            ":codigo" => $item->codigo,
+            ":precio" => $item->precio,
+            ":descuento" => $item->descuento,
+            ":stockMinimo" => $item->stockMinimo,
+            ":stockActual" => $item->stockActual,
+            ":foto" => $item->foto,
+            ":video" => $item->video,
+            ":descripcionCorta" => $item->descripcionCorta,
+            ":descripcionLarga" => $item->descripcionLarga,
+            ":destacado" => $item->destacado,
+            ":onSale" => $item->onSale,
+            ":mostrarHome" => $item->mostrarHome
 		);
 		$STH->execute($params);
         $item->id=$DBH->lastInsertId();
@@ -104,8 +104,8 @@ class productoDao {
 		$STH = $DBH->prepare($query);
 		$STH->setFetchMode(PDO::FETCH_ASSOC);
 		$params = array(                                
-            ":idproductos" => $id;
-        )
+            ":idproductos" => $id
+        );
 		$STH->execute($params);
         $DBH=null;
         return $item;

@@ -125,8 +125,8 @@
                     $('#mi-grilla').DataTable({
                         data: o,
                         columns: [
-                            {"data": "id"},
-                            {"data": "nombre"},
+                            {"data": "id", className: "text-center"},
+                            {"data": "nombre", className: "text-center"},
                             {
                                 data: null,
                                 className: "text-center",                            

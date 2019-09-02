@@ -72,6 +72,7 @@
                             <tr>
                                 <th scope="col" class="text-center">#</th>
                                 <th scope="col" class="text-center">Nombre</th>
+                                <th scope="col" class="text-center">Estado</th>
                                 <th scope="col" class="text-center">Enlaces</th>
                             </tr>
                         </thead>
@@ -122,6 +123,7 @@
                 },
                 success:function(resultado) { 
                     var o=JSON.parse(resultado);
+                    console.log(o);
                     $('#mi-grilla').DataTable({
                         data: o,
                         columns: [
@@ -129,11 +131,23 @@
                             {"data": "nombre", className: "text-center"},
                             {
                                 data: null,
+                                className: "text-center",
+                                render: function (data){
+                                    if(data.activo==1){
+                                        return '<a class="fa fa-window-close" title="Desactivar" href="javascript:Desactivar('+ data.id +');"></a>';
+                                    }else{
+                                        return '<a class="fa fa-check-square" title="Activar" href="javascript:Activar('+ data.id +');"></a>';
+                                    }
+                                }
+                            },
+                            {
+                                data: null,
                                 className: "text-center",                            
                                 render: function (data){
                                 return '<a class="fa fa-edit mr-5" href="javascript:editar('+ data.id +');"></a><a class="fa fa-trash" href="javascript:eliminar('+ data.id +');"></a>';
                                 }
                             }
+                            
                         ],
                         "language": {
                             "lengthMenu": "Mostrando _MENU_ registros por pagina",
@@ -158,8 +172,6 @@
             });
         })(jQuery);
 
-    
-
         function NuevaCategoria(){
             window.location="../Formularios/Categoria.php";
         }
@@ -182,6 +194,34 @@
                     console.log(error);
                 });
             }
+        }
+
+        function Desactivar(id){
+            const formData = new FormData();
+            formData.append('accion', 'desactivar');
+            formData.append('id', id);
+            axios.post('../controllers/categoriaController.php',formData)
+            .then(function (response) {
+                location.reload();
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        }
+
+        function Activar(id){
+            const formData = new FormData();
+            formData.append('accion', 'activar');
+            formData.append('id', id);
+            axios.post('../controllers/categoriaController.php',formData)
+            .then(function (response) {
+                location.reload();
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         }
     </script>
 </body>

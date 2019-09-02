@@ -5,7 +5,7 @@ class usuarioDao {
     public static function ObtenerPorID($id) {
         $Objeto=new usuario();
         $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
-		$query = 'select usuarios.idusuario, usuarios.nombre, usuarios.apellido, usuarios.apellido, usuarios.mail, usuarios.estado, categoriasusuarios.nombrecategoria from usuarios where usuarios.idusuario= :idusuario inner join categoriasusuarios on categoriasusuarios.idcategoriasusuario=usuarios.idcategoria';
+		$query = 'select usuarios.idusuario, usuarios.nombre, usuarios.apellido, usuarios.mail, usuarios.estado, categoriasusuarios.nombrecategoria from usuarios inner join categoriasusuarios on categoriasusuarios.idcategoriasusuario=usuarios.idcategoria where usuarios.idusuario= :idusuario';
 		$STH = $DBH->prepare($query);
 		$STH->setFetchMode(PDO::FETCH_ASSOC);
 		$params = array(                                

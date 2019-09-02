@@ -91,6 +91,8 @@ if(isset($_GET['id'])){
                             <input type="hidden" name="accion" id="accion" value="<?php echo $accion; ?>" />
                             <div class="col col-md-3"><label for="hf-email" class=" form-control-label">Categoria:</label></div>
                             <div class="col-12 col-md-9"><input type="text" id="categoria" name="categoria"  placeholder="Ingrese categoria..." class="form-control"><span class="help-block" id="spanPorfavor">Por favor ingrese la categoria</span></div>
+                            <div class="col col-md-3 mt-1"><label for="hf-email" class=" form-control-label">Activo:</label></div>
+                            <div class="col-12 col-md-9 mt-2"><input type="checkbox" id="activo" name="activo" checked></div>
                         </div>
                     </form>
                 </div>
@@ -124,6 +126,9 @@ if(isset($_GET['id'])){
     <!-- scripit init-->
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
+
+    <script src="../vendors/axios/axios.min.js"></script>
+
       
 
     <script>
@@ -155,28 +160,27 @@ if(isset($_GET['id'])){
     		function Validar(){
                 var categoria = $("#categoria").val();
                 var accion=$('#accion').val();
-                
+                var activo=$('#activo').is(':checked');
                 if(categoria==''){
                     alert('Debe completar la categoria');
                 }
                 else{
-                    $.ajax({
-                        async:true,
-                        type: "POST",
-                        url: "../controllers/categoriaController.php",                    
-                        data:$('#formulario').serialize(),
-                        beforeSend:function(){
-                            
-                        },
-                        success:function(resultado) {
-                            window.location="../ABM/Categorias.php"
-                            return true;
-                        },
-                        timeout:8000,
-                        error:function(){
-                            alert('mensaje de error');
-                            return false;
-                        }
+                    const formData = new FormData();
+                    formData.append('accion', accion);
+                    formData.append('categoria',categoria);
+                    if(activo){
+                        formData.append('activo',1);
+                    }else{
+                        formData.append('activo',0);
+                    }
+                    
+                    axios.post('../controllers/categoriaController.php',formData)
+                    .then(function (response) {
+                        window.location="../ABM/Categorias.php"
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
                     });
                 }		
 		    }

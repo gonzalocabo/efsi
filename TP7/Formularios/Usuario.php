@@ -19,7 +19,7 @@ if(isset($_GET['id'])){
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title id="TituloPagina">Nueva categoria - Mi Tienda Online</title>
+    <title id="TituloPagina">Ver usuario - Mi Tienda Online  </title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -152,11 +152,17 @@ if(isset($_GET['id'])){
                     formData.append('accion', 'obtenerporid');
                     axios.post('../controllers/usuarioController.php',formData)
                     .then(function (response) {
-                        $('#nombre').val(response.data.nombre);
-                        $('#apellido').val(response.data.apellido);
-                        $('#email').val(response.data.mail);
-                        $('#estado').val(response.data.estado);
-                        $('#categoria').val(response.data.categoria);
+                        console.log(response.data);
+                        $('#nombre').text(response.data.nombre);
+                        $('#apellido').text(response.data.apellido);
+                        $('#email').text(response.data.mail);
+                        if(response.data.estado==1){
+                            $('#estado').text("Activo");
+                        }else{
+                            $('#estado').text("Inactivo");
+                        }
+                        
+                        $('#categoria').text(response.data.categoria);
                     })
                     .catch(function (error) {
                     console.log(error);

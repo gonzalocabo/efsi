@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 24-06-2019 a las 13:23:43
+-- Tiempo de generación: 02-09-2019 a las 13:08:53
 -- Versión del servidor: 5.7.21
 -- Versión de PHP: 5.6.35
 
@@ -34,6 +34,7 @@ DROP TABLE IF EXISTS `categoriasproductos`;
 CREATE TABLE IF NOT EXISTS `categoriasproductos` (
   `idcategoriasproductos` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
+  `estado` tinyint(1) NOT NULL,
   PRIMARY KEY (`idcategoriasproductos`),
   UNIQUE KEY `idcategoriasproductos_UNIQUE` (`idcategoriasproductos`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -50,7 +51,15 @@ CREATE TABLE IF NOT EXISTS `categoriasusuarios` (
   `nombrecategoria` varchar(255) NOT NULL,
   PRIMARY KEY (`idcategoriasusuario`),
   UNIQUE KEY `idcategoriasusuario_UNIQUE` (`idcategoriasusuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `categoriasusuarios`
+--
+
+INSERT INTO `categoriasusuarios` (`idcategoriasusuario`, `nombrecategoria`) VALUES
+(1, 'usuario'),
+(2, 'administrador');
 
 -- --------------------------------------------------------
 
@@ -111,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `slider` (
   `foto` varchar(255) NOT NULL,
   PRIMARY KEY (`idslider`),
   UNIQUE KEY `idslider_UNIQUE` (`idslider`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -125,12 +134,20 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `nombre` varchar(255) NOT NULL,
   `apellido` varchar(255) NOT NULL,
   `mail` varchar(255) NOT NULL,
-  `estado` tinyint(4) NOT NULL,
+  `estado` tinyint(1) NOT NULL,
   `idcategoria` int(11) NOT NULL,
   PRIMARY KEY (`idusuario`),
   UNIQUE KEY `idusuario_UNIQUE` (`idusuario`),
   KEY `idcategoria_idx` (`idcategoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`idusuario`, `nombre`, `apellido`, `mail`, `estado`, `idcategoria`) VALUES
+(1, 'Juan', 'Perez', 'jperez@prueba.com', 1, 1),
+(2, 'Roberto', 'Rodriguez', 'rrodriguez@prueba.com', 1, 2);
 
 --
 -- Restricciones para tablas volcadas

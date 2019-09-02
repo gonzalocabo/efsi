@@ -7,10 +7,11 @@ if(isset($_POST['accion'])){
 
     switch ($accion) {
         case 'nuevo':
-            if(isset($_POST['categoria'])){
+            if(isset($_POST['categoria'])&&isset($_POST['activo'])){
                 $nombre = $_POST['categoria'];
                 $item = new categoria();
                 $item->nombre = $nombre;
+                $item->activo=$_POST['activo'];
                 $resultado = categoriaDao::nuevo($item);
                 echo json_encode($resultado);
             }else{
@@ -47,6 +48,26 @@ if(isset($_POST['accion'])){
             }else{
                 echo json_encode("Error, id nulo");
             }
+            break;
+        case 'listarActivos':
+            $resultado = categoriaDao::ObtenerTodosActivos();
+            echo json_encode($resultado);
+            break;
+        case 'activar':
+            if(isset($_POST['id'])){
+                categoriaDao::activar($_POST['id']);
+                echo json_encode("true");
+            }else{
+                echo json_encode("Error, id nulo");
+            }
+            break;
+        case 'desactivar':
+        if(isset($_POST['id'])){
+            categoriaDao::desactivar($_POST['id']);
+            echo json_encode("true");
+        }else{
+            echo json_encode("Error, id nulo");
+        }
             break;
     }
 }else{

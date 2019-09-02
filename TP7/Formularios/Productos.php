@@ -111,13 +111,10 @@ if(isset($_GET['id'])){
                                 <div class="col-12 col-md-9"><input type="text" id="stockact" name="stockact" placeholder="Stock actual" class="form-control"><small class="form-text text-muted">Ingrese el stock actual</small></div>
                             </div>
                             <div class="row form-group">
-                                <div class="col col-md-3"><label for="select" class=" form-control-label">Categoria</label></div>
+                                <div class="col col-md-3"><label for="categorias" class=" form-control-label">Categoria</label></div>
                                     <div class="col-12 col-md-9">
-                                        <select name="select" id="select" class="form-control">
+                                        <select name="select" id="categorias" class="form-control">
                                             <option value="0">Seleccionar</option>
-                                            <option value="1">A</option>
-                                            <option value="2">B</option>
-                                            <option value="3">C</option>
                                         </select>
                                     </div>
                             </div>
@@ -196,7 +193,7 @@ if(isset($_GET['id'])){
                 const formData = new FormData();
                 formData.append('id', id);
                 formData.append('accion', 'obtenerporid');
-                axios.post('../controllers/sliderController.php',formData)
+                axios.post('../controllers/productoController.php',formData)
                 .then(function (response) {
                     $('#nombre').val(response.data.nombre);
                     $('#spanNombre').hide();
@@ -206,6 +203,22 @@ if(isset($_GET['id'])){
                 console.log(error);
                 });
             }
+            const formData = new FormData();
+            formData.append('accion', 'listarActivos');
+            axios.post('../controllers/categoriaController.php',formData)
+            .then(function (response) {
+                $.each(response.data,function()
+                {
+                    var option = $('<option />');
+                    option.attr('value', this.id).text(this.nombre);
+
+                    $('#categorias').append(option);
+                });
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         })(jQuery);
 
         function Validar(){

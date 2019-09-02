@@ -17,6 +17,7 @@ class categoriaDao {
 			while($row = $STH->fetch()) {
                 $Objeto->id=$row['idcategoriasproductos'];
                 $Objeto->nombre=$row['nombre'];
+                $Objeto->activo=$row['estado'];
 			}
         }
          return $Objeto;   
@@ -36,6 +37,7 @@ class categoriaDao {
                 $Objeto=new categoria();
                 $Objeto->id=$row['idcategoriasproductos'];
                 $Objeto->nombre=$row['nombre'];
+                $Objeto->activo=$row['estado'];
                 $arrayObjetos[]=$Objeto;
 			}
         }
@@ -45,11 +47,12 @@ class categoriaDao {
 
     public static function nuevo($item) {
         $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
-		$query = 'INSERT INTO categoriasproductos (nombre) values(:nombre)';
+		$query = 'INSERT INTO categoriasproductos (nombre,estado) values(:nombre,:activo)';
 		$STH = $DBH->prepare($query);
 		$STH->setFetchMode(PDO::FETCH_ASSOC);
 		$params = array(                      
-            ":nombre" => $item->nombre
+            ":nombre" => $item->nombre,
+            ":activo"=>$item->activo
 		);
 		$STH->execute($params);
         $id=$DBH->lastInsertId();
@@ -62,12 +65,13 @@ class categoriaDao {
     public static function modificar($item) {
         //aca va la logica para modificar. Recibe por parametro un objeto de tipo categoria
         $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
-        $query = 'UPDATE categoriasproductos SET nombre=:nombre where idcategoriasproductos=:id';
+        $query = 'UPDATE categoriasproductos SET nombre=:nombre, estado=:activo where idcategoriasproductos=:id';
         $STH = $DBH->prepare($query);
 		$STH->setFetchMode(PDO::FETCH_ASSOC);
 		$params = array(      
             ":id"=>$item->id,                
-            ":nombre" => $item->nombre
+            ":nombre" => $item->nombre,
+            ":activo"=>$item->activo
 		);
 		$STH->execute($params);
         if ($STH->rowCount() < 1) {
@@ -96,6 +100,61 @@ class categoriaDao {
         return $item;
         //aca va la logica para eliminar
     }// eliminar
+
+    public static function ObtenerTodosActivos() {
+        $arrayObjetos= array();
+        $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
+		$query = 'select * from categoriasproductos where categoriasproductos.estado=1';
+		$STH = $DBH->prepare($query);
+		$STH->setFetchMode(PDO::FETCH_ASSOC);
+		
+		$STH->execute();
+		$DBH=null;
+		if ($STH->rowCount() > 0) {
+			while($row = $STH->fetch()) {
+                $Objeto=new categoria();
+                $Objeto->id=$row['idcategoriasproductos'];
+                $Objeto->nombre=$row['nombre'];
+                $arrayObjetos[]=$Objeto;
+			}
+        }
+         return $arrayObjetos;   
+        //devuelve un array de objetos de tipo categoria
+    }
+
+    public static function activar($id) {
+        $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
+        $query = 'UPDATE categoriasproductos SET estado=1 where idcategoriasproductos=:id';
+        $params = array( 
+            ":id"=>$id
+        );        
+        $STH = $DBH->prepare($query);
+		$STH->setFetchMode(PDO::FETCH_ASSOC);
+        $STH->execute($params);
+        if ($STH->rowCount() < 1) {
+            $item='error consulta';
+        }
+        $DBH=null;
+        $STH=null;
+        return $item;
+    }
+
+    public static function desactivar($id) {
+        $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
+        $query = 'UPDATE categoriasproductos SET estado=0 where idcategoriasproductos=:id';
+        $params = array( 
+            ":id"=>$id
+        );        
+        $STH = $DBH->prepare($query);
+		$STH->setFetchMode(PDO::FETCH_ASSOC);
+        $STH->execute($params);
+        if ($STH->rowCount() < 1) {
+            $item='error consulta';
+        }
+        $DBH=null;
+        $STH=null;
+        return $item;
+    }
 
 }
 ?>

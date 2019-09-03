@@ -23,9 +23,11 @@ if(isset($_POST['accion'])){
                 $item->destacado=$_POST['destacado'];
                 $item->onSale=$_POST['onSale'];
                 $item->mostrarHome=$_POST['mostrarHome'];
+                
                 $resultado = productoDao::nuevo($item);
                 echo json_encode($resultado);
             }else{
+                var_dump($_POST['nombre']);
                 echo json_encode("error");
             }            
             break;    

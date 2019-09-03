@@ -85,7 +85,7 @@ if(isset($_GET['id'])){
                     <strong>Insertar productos</strong>
                 </div>
                <div class="card-body card-block">
-                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <form action="" method="post" id="formulario" name="formulario" enctype="multipart/form-data" class="form-horizontal">
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nombre</label></div>
                                 <div class="col-12 col-md-9"><input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control"><small class="form-text text-muted">Ingrese el nombre</small></div>
@@ -104,16 +104,16 @@ if(isset($_GET['id'])){
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="text-input" class=" form-control-label">Stock minimo</label></div>
-                                <div class="col-12 col-md-9"><input type="text" id="stockmin" name="stockmin" placeholder="Stock minimo" class="form-control"><small class="form-text text-muted">Ingrese el stock minimo</small></div>
+                                <div class="col-12 col-md-9"><input type="text" id="stockMinimo" name="stockMinimo" placeholder="Stock minimo" class="form-control"><small class="form-text text-muted">Ingrese el stock minimo</small></div>
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="text-input" class=" form-control-label">Stock actual</label></div>
-                                <div class="col-12 col-md-9"><input type="text" id="stockact" name="stockact" placeholder="Stock actual" class="form-control"><small class="form-text text-muted">Ingrese el stock actual</small></div>
+                                <div class="col-12 col-md-9"><input type="text" id="stockActual" name="stockActual" placeholder="Stock actual" class="form-control"><small class="form-text text-muted">Ingrese el stock actual</small></div>
                             </div>
                             <div class="row form-group">
-                                <div class="col col-md-3"><label for="categorias" class=" form-control-label">Categoria</label></div>
+                                <div class="col col-md-3"><label for="categoria" class=" form-control-label">Categoria</label></div>
                                     <div class="col-12 col-md-9">
-                                        <select name="select" id="categorias" class="form-control">
+                                        <select name="categoria" id="categoria" class="form-control">
                                             <option value="0">Seleccionar</option>
                                         </select>
                                     </div>
@@ -128,11 +128,11 @@ if(isset($_GET['id'])){
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="text-input" class=" form-control-label">Descripcion corta</label></div>
-                                <div class="col-12 col-md-9"><input type="text" id="descripcioncorta" name="descripcioncorta" placeholder="Descripcion corta" class="form-control"></div>
+                                <div class="col-12 col-md-9"><input type="text" id="descripcionCorta" name="descripcionCorta" placeholder="Descripcion corta" class="form-control"></div>
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Descripcion larga</label></div>
-                                <div class="col-12 col-md-9"><textarea name="descripcionlarga" id="descripcion larga" rows="7" placeholder="Descripcion.." class="form-control"></textarea></div>
+                                <div class="col-12 col-md-9"><textarea name="descripcionLarga" id="descripcionLarga" rows="7" placeholder="Descripcion.." class="form-control"></textarea></div>
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label class=" form-control-label"></label></div>
@@ -145,7 +145,7 @@ if(isset($_GET['id'])){
                                         </div>
                                         <div class="checkbox">
                                             <label for="checkbox2" class="form-check-label ">
-                                                <input type="checkbox" id="onsale" name="onsale" value="true" class="form-check-input">OnSale
+                                                <input type="checkbox" id="onSale" name="onSale" value="true" class="form-check-input">OnSale
                                             </label>
                                         </div>
                                     </div>
@@ -212,7 +212,7 @@ if(isset($_GET['id'])){
                     var option = $('<option />');
                     option.attr('value', this.id).text(this.nombre);
 
-                    $('#categorias').append(option);
+                    $('#categoria').append(option);
                 });
                 console.log(response);
             })
@@ -228,7 +228,8 @@ if(isset($_GET['id'])){
             if(nombre==''||(foto==""&&accion=="nuevo")){
 				alert('Debe completar todos los campos');
 			}else{
-                const formData = new FormData();
+                var form=$("#formulario");
+                const formData = new FormData(form[0]);
                 formData.append('accion',accion);
                 formData.append('id',<?php echo $id;?>);
                 formData.append('nombre',nombre);
@@ -237,11 +238,11 @@ if(isset($_GET['id'])){
                 }else{
                     formData.append('foto', foto);
                 }
-                axios.post('../controllers/sliderController.php', formData)
+                axios.post('../controllers/productoController.php', formData)
                 .then(function (response) {
-                    console.log(response);
+                    console.log(response.data);
                     alert(response.data);
-                    window.location="../ABM/Slider.php"
+                    window.location="../ABM/Productos.php"
                 })
                 .catch(function (error) {
                     console.log(error);

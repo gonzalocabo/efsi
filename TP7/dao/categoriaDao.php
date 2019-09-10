@@ -67,12 +67,12 @@ class categoriaDao {
         $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
         $query = 'UPDATE categoriasproductos SET nombre=:nombre, estado=:activo where idcategoriasproductos=:id';
         $STH = $DBH->prepare($query);
-		$STH->setFetchMode(PDO::FETCH_ASSOC);
+        $STH->setFetchMode(PDO::FETCH_ASSOC);
 		$params = array(      
             ":id"=>$item->id,                
             ":nombre" => $item->nombre,
             ":activo"=>$item->activo
-		);
+        );
 		$STH->execute($params);
         if ($STH->rowCount() < 1) {
             $item='';

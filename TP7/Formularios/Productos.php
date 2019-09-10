@@ -140,12 +140,17 @@ if(isset($_GET['id'])){
                                     <div class="form-check">
                                         <div class="checkbox">
                                             <label for="checkbox1" class="form-check-label ">
-                                                <input type="checkbox" id="destacado" name="destacado" value="true" class="form-check-input">Destacado
+                                                <input type="checkbox" id="destacado" name="destacado" class="form-check-input">Destacado
                                             </label>
                                         </div>
                                         <div class="checkbox">
                                             <label for="checkbox2" class="form-check-label ">
-                                                <input type="checkbox" id="onSale" name="onSale" value="true" class="form-check-input">OnSale
+                                                <input type="checkbox" id="onSale" name="onSale" class="form-check-input">OnSale
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label for="checkbox2" class="form-check-label ">
+                                                <input type="checkbox" id="mostrarHome" name="mostrarHome" class="form-check-input">Mostrar en home
                                             </label>
                                         </div>
                                     </div>
@@ -222,8 +227,8 @@ if(isset($_GET['id'])){
         })(jQuery);
 
         function Validar(){
-            var nombre = $("#nombre").val();
             var foto = $("#foto").val();
+            var video = $("#video").val();
             var accion= "<?php echo $accion; ?>";
             if(nombre==''||(foto==""&&accion=="nuevo")){
 				alert('Debe completar todos los campos');
@@ -232,17 +237,34 @@ if(isset($_GET['id'])){
                 const formData = new FormData(form[0]);
                 formData.append('accion',accion);
                 formData.append('id',<?php echo $id;?>);
-                formData.append('nombre',nombre);
                 if(accion=="modificar"&&foto==""){
                     formData.append('foto', "nofoto");
                 }else{
-                    formData.append('foto', foto);
+                    console.log("entro a set");
+                    formData.set('foto', foto);
+                    formData.set('video', video);
                 }
+                if($('#destacado').is(':checked')){
+                    formData.set('destacado', 1);
+                }else{
+                    formData.set('destacado', 0);
+                }
+                if($('#onSale').is(':checked')){
+                    formData.set('onSale', 1);
+                }else{
+                    formData.set('onSale', 0);
+                }
+                if($('#mostrarHome').is(':checked')){
+                    formData.set('mostrarHome', 1);
+                }else{
+                    formData.set('mostrarHome', 0);
+                }
+                
                 axios.post('../controllers/productoController.php', formData)
                 .then(function (response) {
                     console.log(response.data);
                     alert(response.data);
-                    window.location="../ABM/Productos.php"
+                  //  window.location="../ABM/Productos.php"
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -258,3 +280,4 @@ if(isset($_GET['id'])){
 </body>
 
 </html>
+

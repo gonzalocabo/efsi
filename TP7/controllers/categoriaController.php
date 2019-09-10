@@ -32,12 +32,16 @@ if(isset($_POST['accion'])){
             }		
             break;    
         case 'modificar':
-            if(isset($_POST['id'])&&isset($_POST['categoria'])){
+            if(isset($_POST['id'])&&isset($_POST['categoria'])&&isset($_POST['activo'])){
                 $cat=new categoria();
                 $cat->id=$_POST['id'];
                 $cat->nombre=$_POST['categoria'];
+                $cat->activo=$_POST['activo'];
+                var_dump($_POST['id']);
                 $resultado = categoriaDao::modificar($cat);
                 echo json_encode($resultado);
+            }else{
+                echo json_encode("Algo es nulo");
             }
             //logica de modificacion
             break;

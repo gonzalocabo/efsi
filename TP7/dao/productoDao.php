@@ -38,7 +38,7 @@ class productoDao {
     public static function ObtenerTodos() {
         $arrayObjetos= array();
         $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
-		$query = 'select * from productos';
+		$query = 'SELECT productos.idproductos,productos.nombre,productos.codigo,productos.precio,productos.descuento,productos.stockminimo,productos.stockactual,productos.foto,productos.video,productos.descripcioncorta,productos.descripcioncorta,productos.descripcionlarga,productos.destacado,productos.onsale,productos.mostrarhome,categoriasproductos.nombre as nombrecategoria FROM `productos` inner join categoriasproductos on productos.idcategoria=categoriasproductos.idcategoriasproductos';
 		$STH = $DBH->prepare($query);
 		$STH->setFetchMode(PDO::FETCH_ASSOC);
 		$STH->execute();
@@ -46,20 +46,21 @@ class productoDao {
 		if ($STH->rowCount() > 0) {
 			while($row = $STH->fetch()) {
                 $Objeto=new producto();
-                $Objeto->id=$row['idusuario'];
+                $Objeto->id=$row['idproductos'];
                 $Objeto->nombre=$row['nombre'];
                 $Objeto->codigo=$row['codigo'];
                 $Objeto->precio=$row['precio'];
                 $Objeto->descuento=$row['descuento'];
-                $Objeto->stockMinimo=$row['stockMinimo'];
-                $Objeto->stockActual=$row['stockActual'];
+                $Objeto->stockMinimo=$row['stockminimo'];
+                $Objeto->stockActual=$row['stockactual'];
                 $Objeto->foto=$row['foto'];
                 $Objeto->video=$row['video'];
-                $Objeto->descripcionCorta=$row['descripcionCorta'];
-                $Objeto->descripcionLarga=$row['descripcionLarga'];
+                $Objeto->categoria=$row['nombrecategoria'];
+                $Objeto->descripcionCorta=$row['descripcioncorta'];
+                $Objeto->descripcionLarga=$row['descripcionlarga'];
                 $Objeto->destacado=$row['destacado'];
-                $Objeto->onSale=$row['onSale'];
-                $Objeto->mostrarHome=$row['mostrarHome'];
+                $Objeto->onSale=$row['onsale'];
+                $Objeto->mostrarHome=$row['mostrarhome'];
                 $arrayObjetos[]=$Objeto;
 			}
         }
@@ -69,7 +70,7 @@ class productoDao {
 
     public static function nuevo($item) {
         $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
-		$query = 'INSERT INTO productos (nombre,codigo,precio,descuento,stockMinimo,stockActual,categoria,foto,video,descripcionCorta,descripcionLarga,destacado,onSale,mostrarHome) values(:nombre,:codigo,:precio,:descuento,:stockMinimo,:stockActual,:categoria,:foto,:video,:descripcionCorta,:descripcionLarga,:destacado,:onSale,:mostrarHome)';
+		$query = 'INSERT INTO productos (nombre,codigo,precio,descuento,stockMinimo,stockActual,idcategoria,foto,video,descripcionCorta,descripcionLarga,destacado,onSale,mostrarHome) values(:nombre,:codigo,:precio,:descuento,:stockMinimo,:stockActual,:categoria,:foto,:video,:descripcionCorta,:descripcionLarga,:destacado,:onSale,:mostrarHome)';
 		$STH = $DBH->prepare($query);
 		$STH->setFetchMode(PDO::FETCH_ASSOC);
 		$params = array(                                

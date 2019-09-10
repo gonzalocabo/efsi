@@ -144,6 +144,9 @@ if(isset($_GET['id'])){
                             var o=JSON.parse(resultado);
                             $('#categoria').val(o.nombre);
                             $('#spanPorfavor').hide();
+                            if(o.activo=='0'){
+                                $('#activo').removeAttr("checked");
+                            }
                             $('#Actual').text('Modificar Categoria');
                             $('#TituloPagina').text('Modificar categoria - Mi Tienda Online');
                         },
@@ -161,6 +164,7 @@ if(isset($_GET['id'])){
                 var categoria = $("#categoria").val();
                 var accion=$('#accion').val();
                 var activo=$('#activo').is(':checked');
+                var id=$('#id').val();
                 if(categoria==''){
                     alert('Debe completar la categoria');
                 }
@@ -168,12 +172,12 @@ if(isset($_GET['id'])){
                     const formData = new FormData();
                     formData.append('accion', accion);
                     formData.append('categoria',categoria);
+                    formData.append('id',id);
                     if(activo){
                         formData.append('activo',1);
                     }else{
                         formData.append('activo',0);
                     }
-                    
                     axios.post('../controllers/categoriaController.php',formData)
                     .then(function (response) {
                         window.location="../ABM/Categorias.php"

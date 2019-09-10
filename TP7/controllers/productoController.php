@@ -25,9 +25,9 @@ if(isset($_POST['accion'])){
                 $item->mostrarHome=$_POST['mostrarHome'];
                 
                 $resultado = productoDao::nuevo($item);
+                var_dump($resultado);
                 echo json_encode($resultado);
             }else{
-                var_dump($_POST['nombre']);
                 echo json_encode("error");
             }            
             break;    

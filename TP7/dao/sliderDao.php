@@ -62,21 +62,13 @@ class sliderDao {
     }// nuevo    
 
     public static function modificar($item) {
-        $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
-        if($item->foto=="nofoto"){
-            $query = 'UPDATE slider SET nombre=:nombre where idslider=:id';
-            $params = array(      
-                ":id"=>$item->id,                
-                ":nombre" => $item->nombre
-            );
-        }else{
-            $query = 'UPDATE slider SET nombre=:nombre foto=:foto where idslider=:id';
-            $params = array(      
-                ":id"=>$item->id,                
-                ":nombre" => $item->nombre,
-                ":foto" => $item->foto
-            );
-        }
+        $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");        
+        $query = 'UPDATE slider SET nombre=:nombre, foto=:foto where idslider=:id';
+        $params = array(      
+            ":id"=>$item->id,                
+            ":nombre" => $item->nombre,
+            ":foto" => $item->foto
+        );        
         
         $STH = $DBH->prepare($query);
 		$STH->setFetchMode(PDO::FETCH_ASSOC);

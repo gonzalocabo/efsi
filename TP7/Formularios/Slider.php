@@ -148,7 +148,7 @@ if(isset($_GET['id'])){
         })(jQuery);
         function Validar(){
             
-            if(nombre==''||($("#foto").val()==""&&accion=="nuevo")){
+            if(nombre==''||($("#foto").val()==""&&"<?php echo $accion; ?>"=="nuevo")){
 				alert('Debe completar todos los campos');
 			}else{
                 var form=$('#formulario');

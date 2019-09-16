@@ -123,7 +123,13 @@
                     columns: [
                         {"data": "id", className: "text-center"},
                         {"data": "nombre", className: "text-center"},
-                        {"data": "foto", className: "text-center"},
+                        {
+                            "data": null, 
+                            className: "text-center",
+                            render: function(data){
+                                return '<img src="/uploads/fotos/'+data.foto+'" width="40px"/>'
+                            }
+                        },
                         {
                             data: null,
                             className: "text-center",                            
@@ -165,9 +171,10 @@
                 const formData = new FormData();
                 formData.append('accion', 'eliminar');
                 formData.append('id', id);
+
                 axios.post('../controllers/sliderController.php',formData)
                 .then(function (response) {
-                    location.reload();
+                    //location.reload();
                     console.log(response);
                 })
                 .catch(function (error) {

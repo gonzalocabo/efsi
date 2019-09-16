@@ -8,10 +8,10 @@ if(isset($_POST['accion'])){
 
     switch ($accion) {
         case 'nuevo':
-            if(isset($_POST['nombre'])&&$_FILES['foto']){
+            if(isset($_POST['nombre'])&&$_FILES['foto']['name']!=""){
                 $valid_extensions = array('jpeg', 'jpg', 'png', 'gif', 'bmp');
                 $path = '../uploads/fotos/';
-                if($_FILES['foto'])
+                if($_FILES['foto']['name']!="")
                 {
                     $img = $_FILES['foto']['name'];
                     $tmp = $_FILES['foto']['tmp_name'];
@@ -27,7 +27,7 @@ if(isset($_POST['accion'])){
                         {
                             $item = new slider();
                             $item->nombre = $_POST['nombre'];
-                            $item->foto=$path;
+                            $item->foto=$final_image;
                             $resultado = sliderDao::nuevo($item);
                             echo json_encode($resultado);
                         }else{
@@ -56,20 +56,54 @@ if(isset($_POST['accion'])){
             }		
             break;    
         case 'modificar':
-            if(isset($_POST['id'])&&isset($_POST['nombre'])&&isset($_POST['foto'])){
-                $cat=new slider();
-                $cat->id=$_POST['id'];
-                $cat->nombre=$_POST['nombre'];
-                $cat->foto=$_POST['foto'];
-                $resultado = sliderDao::modificar($cat);
+            if(isset($_POST['id'])&&isset($_POST['nombre'])){                
+                $slider=sliderDao::ObtenerPorID($_POST['id']);
+                if($_FILES['foto']['name']!="")
+                {
+                    $valid_extensions = array('jpeg', 'jpg', 'png', 'gif', 'bmp');
+                    $path = '../uploads/fotos/';
+
+                    $img = $_FILES['foto']['name'];
+                    $tmp = $_FILES['foto']['tmp_name'];
+
+                    $ext = strtolower(pathinfo($img, PATHINFO_EXTENSION));
+
+                    $final_image = rand(1000,1000000).$img;
+
+                    if(in_array($ext, $valid_extensions)) 
+                    {
+                        $path = $path.strtolower($final_image); 
+                        if(move_uploaded_file($tmp,$path)) 
+                        {                            
+                            if(file_exists($_SERVER["DOCUMENT_ROOT"] . "/uploads/fotos/" . $slider->foto)) {
+                                unlink($_SERVER["DOCUMENT_ROOT"] . "/uploads/fotos/" . $slider->foto);
+                                $slider->foto=$final_image;
+                            }else{
+                                echo json_encode("Imagen no encontrada");        
+                            }
+                        }
+                    }else{
+                        echo json_encode("Extension invalida");
+                    }
+                }                
+                $slider->nombre=$_POST['nombre'];
+                var_dump($slider);
+                $resultado = sliderDao::modificar($slider);
+            
                 echo json_encode($resultado);
             }
             //logica de modificacion
             break;
         case 'eliminar':
             if(isset($_POST['id'])){
-                sliderDao::eliminar($_POST['id']);
-                echo json_encode("true");
+                $slider=sliderDao::ObtenerPorID($_POST['id']);
+                if(file_exists($_SERVER["DOCUMENT_ROOT"] . "/uploads/fotos/" . $slider->foto)) {
+                    unlink($_SERVER["DOCUMENT_ROOT"] . "/uploads/fotos/" . $slider->foto);
+                    sliderDao::eliminar($_POST['id']);
+                    echo json_encode("true");
+                }else{
+                    echo json_encode("No existe foto");
+                }
             }else{
                 echo json_encode("Error, id nulo");
             }

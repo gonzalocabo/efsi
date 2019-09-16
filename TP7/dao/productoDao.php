@@ -15,20 +15,20 @@ class productoDao {
 		$DBH=null;
 		if ($STH->rowCount() > 0) {
 			while($row = $STH->fetch()) {
-                $Objeto->id=$row['idusuario'];
+                $Objeto->id=$row['idproductos'];
                 $Objeto->nombre=$row['nombre'];
                 $Objeto->codigo=$row['codigo'];
                 $Objeto->precio=$row['precio'];
                 $Objeto->descuento=$row['descuento'];
-                $Objeto->stockMinimo=$row['stockMinimo'];
-                $Objeto->stockActual=$row['stockActual'];
+                $Objeto->stockMinimo=$row['stockminimo'];
+                $Objeto->stockActual=$row['stockactual'];
                 $Objeto->foto=$row['foto'];
                 $Objeto->video=$row['video'];
-                $Objeto->descripcionCorta=$row['descripcionCorta'];
-                $Objeto->descripcionLarga=$row['descripcionLarga'];
+                $Objeto->descripcionCorta=$row['descripcioncorta'];
+                $Objeto->descripcionLarga=$row['descripcionlarga'];
                 $Objeto->destacado=$row['destacado'];
-                $Objeto->onSale=$row['onSale'];
-                $Objeto->mostrarHome=$row['mostrarHome'];
+                $Objeto->onSale=$row['onsale'];
+                $Objeto->mostrarHome=$row['mostrarhome'];
 			}
         }
          return $Objeto;   

@@ -160,6 +160,10 @@
             window.location="../Formularios/Productos.php";
         }
 
+        function editar(id){
+            window.location="../Formularios/Productos.php?id="+id;
+        }
+
     </script>
 
 </body>

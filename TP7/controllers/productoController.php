@@ -16,8 +16,8 @@ if(isset($_POST['accion'])){
                 $item->stockMinimo=$_POST['stockMinimo'];
                 $item->stockActual=$_POST['stockActual'];
                 $item->categoria=$_POST['categoria'];
-                $item->categoria=$_POST['foto'];
-                $item->categoria=$_POST['video'];
+                $item->foto=$_POST['foto'];
+                $item->video=$_POST['video'];
                 $item->descripcionCorta=$_POST['descripcionCorta'];
                 $item->descripcionLarga=$_POST['descripcionLarga'];
                 $item->destacado=$_POST['destacado'];
@@ -25,7 +25,7 @@ if(isset($_POST['accion'])){
                 $item->mostrarHome=$_POST['mostrarHome'];
                 
                 $resultado = productoDao::nuevo($item);
-                var_dump($resultado);
+              
                 echo json_encode($resultado);
             }else{
                 echo json_encode("error");

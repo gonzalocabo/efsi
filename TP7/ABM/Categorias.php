@@ -134,9 +134,9 @@
                                 className: "text-center",
                                 render: function (data){
                                     if(data.activo==1){
-                                        return '<a class="fa fa-window-close" title="Desactivar" href="javascript:Desactivar('+ data.id +');"></a>';
+                                        return '<a class="fa fa-check-square" title="Desactivar" href="javascript:Desactivar('+ data.id +');"></a>';
                                     }else{
-                                        return '<a class="fa fa-check-square" title="Activar" href="javascript:Activar('+ data.id +');"></a>';
+                                        return '<a class="fa fa-window-close" title="Activar" href="javascript:Activar('+ data.id +');"></a>';
                                     }
                                 }
                             },

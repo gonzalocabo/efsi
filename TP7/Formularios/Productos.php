@@ -188,19 +188,21 @@ if(isset($_GET['id'])){
     <!-- scripit init-->
 
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="../vendors/jquery/dist/jquery.formHelper.js"></script>
     <script src="../vendors/axios/axios.min.js"></script>
 
     <script>
         (function($){
             var id= <?php echo $id;?>;
             if(id!=0){
-                alert("Editar");
                 const formData = new FormData();
                 formData.append('id', id);
                 formData.append('accion', 'obtenerporid');
                 axios.post('../controllers/productoController.php',formData)
                 .then(function (response) {
-                    $('#nombre').val(response.data.nombre);
+                    console.log(response.data);
+                    $('formulario').populateForm(response.data);
+                    //$('#nombre').val(response.data.nombre);
                     $('#spanNombre').hide();
                     $('#Actual').text('Modificar Producto');
                 })
@@ -219,7 +221,6 @@ if(isset($_GET['id'])){
 
                     $('#categoria').append(option);
                 });
-                console.log(response);
             })
             .catch(function (error) {
                 console.log(error);
@@ -264,7 +265,7 @@ if(isset($_GET['id'])){
                 .then(function (response) {
                     console.log(response.data);
                     alert(response.data);
-                  //  window.location="../ABM/Productos.php"
+                    window.location="../ABM/Productos.php"
                 })
                 .catch(function (error) {
                     console.log(error);

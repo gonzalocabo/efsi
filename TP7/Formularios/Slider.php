@@ -130,7 +130,7 @@ if(isset($_GET['id'])){
 
     <script>
         (function($){
-            var id= <?php echo $id;?>;
+           var id= <?php echo $id;?>;
             if(id!=0){
                 const formData = new FormData();
                 formData.append('id', id);
@@ -147,7 +147,26 @@ if(isset($_GET['id'])){
             }
         })(jQuery);
         function Validar(){
-            var nombre = $("#nombre").val();
+            
+            if(nombre==''||($("#foto").val()==""&&accion=="nuevo")){
+				alert('Debe completar todos los campos');
+			}else{
+                var form=$('#formulario');
+                const formData = new FormData(form[0]);
+                formData.append('accion',"<?php echo $accion; ?>");
+                formData.append('id',<?php echo $id;?>);
+                axios.post('../controllers/sliderController.php', formData)
+                .then(function (response) {
+                    console.log(response);
+                    window.location="../ABM/Slider.php"
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });    
+            }
+
+
+            /*var nombre = $("#nombre").val();
             var foto = $("#foto").val();
             var accion= "<?php echo $accion; ?>";
             if(nombre==''||(foto==""&&accion=="nuevo")){
@@ -170,7 +189,7 @@ if(isset($_GET['id'])){
                 .catch(function (error) {
                     console.log(error);
                 });
-            }
+            }*/
         }
         function Back(){
                 window.history.back();

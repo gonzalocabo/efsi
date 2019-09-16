@@ -67,4 +67,6 @@ if(isset($_POST['accion'])){
     echo json_encode("Accion nula");
 }
 
+
+
 ?>

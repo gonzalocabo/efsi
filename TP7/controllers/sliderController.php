@@ -8,15 +8,38 @@ if(isset($_POST['accion'])){
 
     switch ($accion) {
         case 'nuevo':
-            if(isset($_POST['nombre'])){
-                $nombre = $_POST['nombre'];
-                $item = new slider();
-                $item->nombre = $nombre;
-                $item->foto=$_POST['foto'];
-                $resultado = sliderDao::nuevo($item);
-                echo json_encode($resultado);
+            if(isset($_POST['nombre'])&&$_FILES['foto']){
+                $valid_extensions = array('jpeg', 'jpg', 'png', 'gif', 'bmp');
+                $path = '../uploads/fotos/';
+                if($_FILES['foto'])
+                {
+                    $img = $_FILES['foto']['name'];
+                    $tmp = $_FILES['foto']['tmp_name'];
+
+                    $ext = strtolower(pathinfo($img, PATHINFO_EXTENSION));
+
+                    $final_image = rand(1000,1000000).$img;
+
+                    if(in_array($ext, $valid_extensions)) 
+                    {
+                        $path = $path.strtolower($final_image); 
+                        if(move_uploaded_file($tmp,$path)) 
+                        {
+                            $item = new slider();
+                            $item->nombre = $_POST['nombre'];
+                            $item->foto=$path;
+                            $resultado = sliderDao::nuevo($item);
+                            echo json_encode($resultado);
+                        }else{
+                            echo json_encode("Error de subida");
+                        }
+                    }else{
+                        echo json_encode("Error de extension");
+                    }
+                }
+                
             }else{
-                echo json_encode("error");
+                echo json_encode("Error de parametros");
             }            
             break;    
         case 'listar':
@@ -55,5 +78,8 @@ if(isset($_POST['accion'])){
 }else{
     echo json_encode("Accion nula");
 }
+
+
+
 
 ?>

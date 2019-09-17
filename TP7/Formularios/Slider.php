@@ -34,6 +34,7 @@ if(isset($_GET['id'])){
     <link rel="stylesheet" href="../vendors/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="../vendors/selectFX/css/cs-skin-elastic.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/MiEstilo.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -92,9 +93,13 @@ if(isset($_GET['id'])){
                             <div class="col-12 col-md-9"><input type="text" id="nombre" name="nombre" placeholder="Ingrese nombre" class="form-control"><span id="spanNombre" class="help-block">Por favor ingrese el nombre</span></div>
                         </div>
                         <div class="row form-group">
-                                <div class="col col-md-3"><label for="file-input" class=" form-control-label">Foto</label></div>
-                                <div class="col-12 col-md-9"><input accept="image/x-png,image/jpeg" type="file" id="foto" name="foto" class="form-control-file"></div>
-                            </div>
+                            <div class="col col-md-3"><label for="file-input" class=" form-control-label">Foto:</label></div>
+                            <div class="col-12 col-md-9"><input accept="image/x-png,image/jpeg" type="file" id="foto" name="foto" onChange="displayImage(this)" class="form-control-file"></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label for="hf-email" class=" form-control-label"></label></div>
+                            <div class="col-12 col-md-9"><img id="imagen" class="ImagenUpload"/></div>
+                        </div>
                     </form>
                 </div>
                 <div class="card-footer"style="text-align:center">
@@ -140,6 +145,7 @@ if(isset($_GET['id'])){
                     $('#nombre').val(response.data.nombre);
                     $('#spanNombre').hide();
                     $('#Actual').text('Modificar Categoria');
+                    $('#imagen').attr('src',"/uploads/fotos/"+response.data.foto);
                 })
                 .catch(function (error) {
                 console.log(error);
@@ -193,7 +199,18 @@ if(isset($_GET['id'])){
         }
         function Back(){
                 window.history.back();
+        }
+        function displayImage(e) {
+            if (e.files[0]) {
+                var reader = new FileReader();
+                reader.readAsDataURL(e.files[0]);
+                reader.onload = function(e){
+                    $('#imagen').attr('src', e.target.result);
+                }          
+            }else{
+                $('#imagen').attr('src', "");
             }
+        }
     </script>
 
 </body>

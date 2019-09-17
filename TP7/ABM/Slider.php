@@ -174,7 +174,7 @@
 
                 axios.post('../controllers/sliderController.php',formData)
                 .then(function (response) {
-                    //location.reload();
+                    location.reload();
                     console.log(response);
                 })
                 .catch(function (error) {

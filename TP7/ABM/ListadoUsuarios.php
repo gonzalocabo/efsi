@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="es">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -129,9 +129,9 @@
                             className: "text-center",
                             render: function (data){
                                 if(data.estado==1){
-                                    return '<a class="fa fa-window-close" title="Desactivar" href="javascript:Desactivar('+ data.id +');"></a>';
+                                    return '<a class="fa fa-check-square" title="Desactivar" href="javascript:Desactivar('+ data.id +');"></a>';
                                 }else{
-                                    return '<a class="fa fa-check-square" title="Activar" href="javascript:Activar('+ data.id +');"></a>';
+                                    return '<a class="fa fa-window-close" title="Activar" href="javascript:Activar('+ data.id +');"></a>';
                                 }
                             }
                         },

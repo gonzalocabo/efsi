@@ -77,9 +77,9 @@
                             <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton3" data-toggle="dropdown">
                                 <i class="fa fa-cog"></i>
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <div class="dropdown-menu-content">
-                                    <a class="dropdown-item" href="#">Listado de usuarios</a>
+                                    <a class="dropdown-item" href="/ABM/ListadoUsuarios.php">Listado de usuarios</a>
                                 </div>
                             </div>
                         </div>

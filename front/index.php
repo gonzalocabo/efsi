@@ -52,14 +52,14 @@
 							<span>New Arrivals</span>
 							<h2>denim jackets</h2>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
-							<a href="#" class="site-btn sb-line">DISCOVER</a>
-							<a href="#" class="site-btn sb-white">ADD TO CART</a>
+							<a href="#" class="site-btn sb-line">DESCUBRIR</a>
+							<a href="#" class="site-btn sb-white">AÑADIR AL CARRO</a>
 						</div>
 					</div>
 					<div class="offer-card text-white">
-						<span>from</span>
-						<h2>$29</h2>
-						<p>SHOP NOW</p>
+						<span>DESDE</span>
+						<h2>$600</h2>
+						<p>COMPRA AHORA</p>
 					</div>
 				</div>
 			</div>
@@ -70,14 +70,14 @@
 							<span>New Arrivals</span>
 							<h2>denim jackets</h2>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
-							<a href="#" class="site-btn sb-line">DISCOVER</a>
-							<a href="#" class="site-btn sb-white">ADD TO CART</a>
+							<a href="#" class="site-btn sb-line">DESCUBRIR</a>
+							<a href="#" class="site-btn sb-white">AÑADIR AL CARRO</a>
 						</div>
 					</div>
 					<div class="offer-card text-white">
-						<span>from</span>
-						<h2>$29</h2>
-						<p>SHOP NOW</p>
+						<span>DESDE</span>
+						<h2>$600</h2>
+						<p>COMPRA AHORA</p>
 					</div>
 				</div>
 			</div>
@@ -99,7 +99,7 @@
 						<div class="feature-icon">
 							<img src="img/icons/1.png" alt="#">
 						</div>
-						<h2>Fast Secure Payments</h2>
+						<h2>PAGOS RAPIDOS Y SEGUROS</h2>
 					</div>
 				</div>
 				<div class="col-md-4 p-0 feature">
@@ -107,7 +107,7 @@
 						<div class="feature-icon">
 							<img src="img/icons/2.png" alt="#">
 						</div>
-						<h2>Premium Products</h2>
+						<h2>PRODUCTOS PREMIUM</h2>
 					</div>
 				</div>
 				<div class="col-md-4 p-0 feature">
@@ -115,7 +115,7 @@
 						<div class="feature-icon">
 							<img src="img/icons/3.png" alt="#">
 						</div>
-						<h2>Free & fast Delivery</h2>
+						<h2>ENVIO RAPIDO</h2>
 					</div>
 				</div>
 			</div>
@@ -128,7 +128,7 @@
 	<section class="top-letest-product-section">
 		<div class="container">
 			<div class="section-title">
-				<h2>LATEST PRODUCTS</h2>
+				<h2>ULTIMOS PRODUCTOS</h2>
 			</div>
 			<div class="product-slider owl-carousel">
 				<div class="product-item">
@@ -208,7 +208,7 @@
 	<section class="product-filter-section">
 		<div class="container">
 			<div class="section-title">
-				<h2>BROWSE TOP SELLING PRODUCTS</h2>
+				<h2>BUSCA EN LOS MAS VENDIDOS</h2>
 			</div>
 			<ul class="product-filter-menu">
 				<li><a href="#">TOPS</a></li>
@@ -344,7 +344,7 @@
 				</div>
 			</div>
 			<div class="text-center pt-5">
-				<button class="site-btn sb-line sb-dark">LOAD MORE</button>
+				<button class="site-btn sb-line sb-dark">CARGAR MAS</button>
 			</div>
 		</div>
 	</section>
@@ -356,9 +356,9 @@
 		<div class="container">
 			<div class="banner set-bg" data-setbg="img/banner-bg.jpg">
 				<div class="tag-new">NEW</div>
-				<span>New Arrivals</span>
-				<h2>STRIPED SHIRTS</h2>
-				<a href="#" class="site-btn">SHOP NOW</a>
+				<span>RECIEN LLEGADOS</span>
+				<h2>REMERAS</h2>
+				<a href="#" class="site-btn">COMPRA AHORA</a>
 			</div>
 		</div>
 	</section>

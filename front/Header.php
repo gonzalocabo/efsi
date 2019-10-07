@@ -10,7 +10,7 @@
                 </div>
                 <div class="col-xl-6 col-lg-5">
                     <form class="header-search-form">
-                        <input type="text" placeholder="Search on divisima ....">
+                        <input type="text" placeholder="Buscar en tienda web ....">
                         <button><i class="flaticon-search"></i></button>
                     </form>
                 </div>
@@ -18,14 +18,14 @@
                     <div class="user-panel">
                         <div class="up-item">
                             <i class="flaticon-profile"></i>
-                            <a href="#">Sign</a> In or <a href="#">Create Account</a>
+                            <a href="#">Iniciar sesion</a> o <a href="#">Crear Cuenta</a>
                         </div>
                         <div class="up-item">
                             <div class="shopping-card">
                                 <i class="flaticon-bag"></i>
                                 <span>0</span>
                             </div>
-                            <a href="#">Shopping Cart</a>
+                            <a href="/cart">Carrito</a>
                         </div>
                     </div>
                 </div>
@@ -37,12 +37,12 @@
             <!-- menu -->
             <ul class="main-menu">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Women</a></li>
-                <li><a href="#">Men</a></li>
-                <li><a href="#">Jewelry
+                <li><a href="#">Mujeres</a></li>
+                <li><a href="#">Hombres</a></li>
+                <li><a href="#">Joyeria
                     <span class="new">New</span>
                 </a></li>
-                <li><a href="#">Shoes</a>
+                <li><a href="#">Zapatillas</a>
                     <ul class="sub-menu">
                         <li><a href="#">Sneakers</a></li>
                         <li><a href="#">Sandals</a></li>
@@ -51,16 +51,15 @@
                         <li><a href="#">Flip Flops</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Pages</a>
+                <li><a href="#">Paginas</a>
                     <ul class="sub-menu">
-                        <li><a href="./product.html">Product Page</a></li>
-                        <li><a href="./category.html">Category Page</a></li>
-                        <li><a href="./cart.html">Cart Page</a></li>
-                        <li><a href="./checkout.html">Checkout Page</a></li>
-                        <li><a href="./contact.html">Contact Page</a></li>
+                        <li><a href="/product.html">Product Page</a></li>
+                        <li><a href="/category.html">Category Page</a></li>
+                        <li><a href="/cart.html">Cart Page</a></li>
+                        <li><a href="/checkout.html">Checkout Page</a></li>
+                        <li><a href="/contact.html">Contact Page</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Blog</a></li>
             </ul>
         </div>
     </nav>

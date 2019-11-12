@@ -42,7 +42,7 @@ if(isset($_GET['id'])){
     <!-- Left Panel -->
 
     <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/Left-panel.php');
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/Left-panel.php');
     ?>
 
     <!-- Left Panel -->
@@ -53,7 +53,7 @@ if(isset($_GET['id'])){
 
         <!-- Header-->
             <?php
-                require_once($_SERVER['DOCUMENT_ROOT'] . '/Header.php');
+                require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/Header.php');
             ?>
         <!-- /header -->
         <!-- Header-->
@@ -138,7 +138,7 @@ if(isset($_GET['id'])){
                     $.ajax({
                         async:true,
                         type: "POST",
-                        url: "../controllers/categoriaController.php",
+                        url: "http://localhost/controllers/categoriaController.php",
                         data: 'accion=obtenerporid&id='+id,
                         success:function(resultado) {
                             var o=JSON.parse(resultado);
@@ -178,7 +178,7 @@ if(isset($_GET['id'])){
                     }else{
                         formData.append('activo',0);
                     }
-                    axios.post('../controllers/categoriaController.php',formData)
+                    axios.post('http://localhost/controllers/categoriaController.php',formData)
                     .then(function (response) {
                         window.location="../ABM/Categorias.php"
                         console.log(response);

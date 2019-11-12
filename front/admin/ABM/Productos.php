@@ -28,7 +28,7 @@
     <!-- Left Panel -->
 
     <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/Left-panel.php');
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/Left-panel.php');
     ?>
 
     <!-- Left Panel -->
@@ -38,7 +38,7 @@
     <div id="right-panel" class="right-panel">
         <!-- Header-->
             <?php
-                require_once($_SERVER['DOCUMENT_ROOT'] . '/Header.php');
+                require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/Header.php');
             ?>
         <!-- /header -->
         <!-- Header-->
@@ -118,7 +118,7 @@
         (function ($) {  
             const formData = new FormData();
             formData.append('accion', 'listar');
-            axios.post('../controllers/productoController.php',formData)
+            axios.post('http://localhost/controllers/productoController.php',formData)
             .then(function (response) {
                 $('#mi-grilla').DataTable({
                     data: response.data,
@@ -157,11 +157,11 @@
         })(jQuery);
 
         function NuevoProducto(){
-            window.location="../Formularios/Productos.php";
+            window.location="http://localhost/admin/Formularios/Productos.php";
         }
 
         function editar(id){
-            window.location="../Formularios/Productos.php?id="+id;
+            window.location="http://localhost/admin/Formularios/Productos.php?id="+id;
         }
 
     </script>

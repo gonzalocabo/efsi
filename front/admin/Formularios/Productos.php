@@ -28,12 +28,12 @@ if(isset($_GET['id'])){
     <link rel="shortcut icon" href="favicon.ico">
 
 
-    <link rel="stylesheet" href="/vendors/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/vendors/themify-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="/vendors/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" href="/vendors/selectFX/css/cs-skin-elastic.css">
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="../vendors/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../vendors/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../vendors/themify-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="../vendors/selectFX/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -43,7 +43,7 @@ if(isset($_GET['id'])){
     <!-- Left Panel -->
 
     <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/Left-panel.php');
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/Left-panel.php');
     ?>
 
     <!-- Left Panel -->
@@ -54,7 +54,7 @@ if(isset($_GET['id'])){
 
         <!-- Header-->
             <?php
-                require_once($_SERVER['DOCUMENT_ROOT'] . '/Header.php');
+                require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/Header.php');
             ?>
         <!-- /header -->
         <!-- Header-->
@@ -198,7 +198,7 @@ if(isset($_GET['id'])){
                 const formData = new FormData();
                 formData.append('id', id);
                 formData.append('accion', 'obtenerporid');
-                axios.post('../controllers/productoController.php',formData)
+                axios.post('http://localhost/controllers/productoController.php',formData)
                 .then(function (response) {
                     console.log(response.data);
                     $('formulario').populateForm(response.data);
@@ -212,7 +212,7 @@ if(isset($_GET['id'])){
             }
             const formData = new FormData();
             formData.append('accion', 'listarActivos');
-            axios.post('../controllers/categoriaController.php',formData)
+            axios.post('http://localhost/controllers/categoriaController.php',formData)
             .then(function (response) {
                 $.each(response.data,function()
                 {
@@ -261,11 +261,11 @@ if(isset($_GET['id'])){
                     formData.set('mostrarHome', 0);
                 }
                 
-                axios.post('../controllers/productoController.php', formData)
+                axios.post('http://localhost/controllers/productoController.php', formData)
                 .then(function (response) {
                     console.log(response.data);
                     alert(response.data);
-                    window.location="../ABM/Productos.php"
+                    window.location="http://localhost/admin/ABM/Productos.php"
                 })
                 .catch(function (error) {
                     console.log(error);

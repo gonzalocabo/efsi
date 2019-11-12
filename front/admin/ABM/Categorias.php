@@ -28,7 +28,7 @@
     <!-- Left Panel -->
 
     <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/Left-panel.php');        
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/Left-panel.php');        
 
     ?>
 
@@ -39,7 +39,7 @@
     <div id="right-panel" class="right-panel">
         <!-- Header-->
             <?php
-                require_once($_SERVER['DOCUMENT_ROOT'] . '/Header.php');
+                require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/Header.php');
             ?>
         <!-- /header -->
         <!-- Header-->
@@ -117,7 +117,7 @@
             $.ajax({
                 async:true,
                 type: "POST",
-                url: "../controllers/categoriaController.php",
+                url: "http://localhost/controllers/categoriaController.php",
                 data: "accion=listar",
                 beforeSend:function(){
                 },
@@ -173,10 +173,10 @@
         })(jQuery);
 
         function NuevaCategoria(){
-            window.location="../Formularios/Categoria.php";
+            window.location="http://localhost/admin/Formularios/Categoria.php";
         }
         function editar(id){
-            window.location="../Formularios/Categoria.php?id="+id;
+            window.location="http://localhost/admin/Formularios/Categoria.php?id="+id;
         }
         function eliminar(id){
             var r=confirm("¿Seguro que desea eliminar la categoria?")
@@ -185,7 +185,7 @@
     
                 formData.append('accion', 'eliminar');
                 formData.append('id', id);
-                axios.post('../controllers/categoriaController.php',formData)
+                axios.post('http://localhost/controllers/categoriaController.php',formData)
                 .then(function (response) {
                     location.reload();
                     console.log(response);
@@ -200,7 +200,7 @@
             const formData = new FormData();
             formData.append('accion', 'desactivar');
             formData.append('id', id);
-            axios.post('../controllers/categoriaController.php',formData)
+            axios.post('http://localhost/controllers/categoriaController.php',formData)
             .then(function (response) {
                 location.reload();
                 console.log(response);
@@ -214,7 +214,7 @@
             const formData = new FormData();
             formData.append('accion', 'activar');
             formData.append('id', id);
-            axios.post('../controllers/categoriaController.php',formData)
+            axios.post('http://localhost/controllers/categoriaController.php',formData)
             .then(function (response) {
                 location.reload();
                 console.log(response);

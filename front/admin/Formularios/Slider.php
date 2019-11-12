@@ -44,7 +44,7 @@ if(isset($_GET['id'])){
     <!-- Left Panel -->
 
     <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/Left-panel.php');
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/Left-panel.php');
     ?>
 
     <!-- Left Panel -->
@@ -55,7 +55,7 @@ if(isset($_GET['id'])){
 
         <!-- Header-->
             <?php
-                require_once($_SERVER['DOCUMENT_ROOT'] . '/Header.php');
+                require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/Header.php');
             ?>
         <!-- /header -->
         <!-- Header-->
@@ -140,7 +140,7 @@ if(isset($_GET['id'])){
                 const formData = new FormData();
                 formData.append('id', id);
                 formData.append('accion', 'obtenerporid');
-                axios.post('../controllers/sliderController.php',formData)
+                axios.post('http://localhost/controllers/sliderController.php',formData)
                 .then(function (response) {
                     $('#nombre').val(response.data.nombre);
                     $('#spanNombre').hide();
@@ -161,10 +161,10 @@ if(isset($_GET['id'])){
                 const formData = new FormData(form[0]);
                 formData.append('accion',"<?php echo $accion; ?>");
                 formData.append('id',<?php echo $id;?>);
-                axios.post('../controllers/sliderController.php', formData)
+                axios.post('http://localhost/controllers/sliderController.php', formData)
                 .then(function (response) {
                     console.log(response);
-                    window.location="../ABM/Slider.php"
+                    window.location="http://localhost/admin/ABM/Slider.php"
                 })
                 .catch(function (error) {
                     console.log(error);

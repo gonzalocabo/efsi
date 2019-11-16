@@ -107,6 +107,10 @@ if(isset($_POST['accion'])){
                 echo json_encode("Error, id nulo");
             }
             break;
+        case 'listarOwlCarousel':
+            $resultado=sliderDao::ObtenerRutaImagenes();
+            echo json_encode($resultado);
+            break;
     }
 }else{
     echo json_encode("Accion nula");

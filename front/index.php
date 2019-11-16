@@ -37,12 +37,9 @@
 	</div>
 
 	<!-- Header section -->
-	<?php require_once("/Header.php") ?>
+	<?php require_once("Header.php") ?>
 	<!-- Header section end -->
 
-
-
-	<!-- Hero section -->
 	<section class="hero-section">
 		<div class="hero-slider owl-carousel">
 			<div class="hs-item set-bg" data-setbg="img/bg.jpg">
@@ -86,9 +83,6 @@
 			<div class="slide-num-holder" id="snh-1"></div>
 		</div>
 	</section>
-	<!-- Hero section end -->
-
-
 
 	<!-- Features section -->
 	<section class="features-section">
@@ -366,7 +360,7 @@
 
 
 	<!-- Footer section -->
-	<?php require_once("/Footer.php") ?>
+	<?php require_once("Footer.php") ?>
 	<!-- Footer section end -->
 
 
@@ -385,6 +379,11 @@
 	<script src="js/jquery.zoom.min.js"></script>
 	<script src="js/jquery-ui.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src="/admin/vendors/axios/axios.min.js"></script>
+
+	<script>
+	</script>
+
 
 	</body>
 </html>

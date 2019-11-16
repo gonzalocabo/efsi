@@ -96,5 +96,20 @@ class sliderDao {
         //aca va la logica para eliminar
     }// eliminar
 
+    public static function ObtenerRutaImagenes(){
+        $arrayObjetos= array();
+        $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
+		$query = 'select slider.foto from slider';
+		$STH = $DBH->prepare($query);
+		$STH->setFetchMode(PDO::FETCH_ASSOC);
+		$STH->execute();
+		$DBH=null;
+		if ($STH->rowCount() > 0) {
+			while($row = $STH->fetch()) {
+                $arrayObjetos[] = $row['foto'];
+			}
+        }
+         return $arrayObjetos;
+    }
 }
 ?>

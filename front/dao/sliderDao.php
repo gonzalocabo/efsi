@@ -92,7 +92,7 @@ class sliderDao {
         );
 		$STH->execute($params);
         $DBH=null;
-         return $item;
+        return ;
         //aca va la logica para eliminar
     }// eliminar
 

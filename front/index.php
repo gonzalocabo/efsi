@@ -41,43 +41,8 @@
 	<!-- Header section end -->
 
 	<section class="hero-section">
-		<div class="hero-slider owl-carousel">
-			<div class="hs-item set-bg" data-setbg="img/bg.jpg">
-				<div class="container">
-					<div class="row">
-						<div class="col-xl-6 col-lg-7 text-white">
-							<span>New Arrivals</span>
-							<h2>denim jackets</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
-							<a href="#" class="site-btn sb-line">DESCUBRIR</a>
-							<a href="#" class="site-btn sb-white">AÑADIR AL CARRO</a>
-						</div>
-					</div>
-					<div class="offer-card text-white">
-						<span>DESDE</span>
-						<h2>$600</h2>
-						<p>COMPRA AHORA</p>
-					</div>
-				</div>
-			</div>
-			<div class="hs-item set-bg" data-setbg="img/bg-2.jpg">
-				<div class="container">
-					<div class="row">
-						<div class="col-xl-6 col-lg-7 text-white">
-							<span>New Arrivals</span>
-							<h2>denim jackets</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
-							<a href="#" class="site-btn sb-line">DESCUBRIR</a>
-							<a href="#" class="site-btn sb-white">AÑADIR AL CARRO</a>
-						</div>
-					</div>
-					<div class="offer-card text-white">
-						<span>DESDE</span>
-						<h2>$600</h2>
-						<p>COMPRA AHORA</p>
-					</div>
-				</div>
-			</div>
+		<div class="hero-slider owl-carousel" id="sliderBanner">
+
 		</div>
 		<div class="container">
 			<div class="slide-num-holder" id="snh-1"></div>
@@ -382,6 +347,75 @@
 	<script src="/admin/vendors/axios/axios.min.js"></script>
 
 	<script>
+		(function($){
+
+			const formData = new FormData();
+			formData.append('accion', 'listarOwlCarousel');
+			axios.post('http://localhost/controllers/sliderController.php',formData)
+            .then(function (response) {
+				console.log(response.data);
+				$.each(response.data,function(index,value)
+                {
+					$('#sliderBanner').append('<div class="hs-item set-bg" data-setbg="/uploads/fotos/'+value+'"></div>')
+				});
+				var hero_s = $(".hero-slider");
+				hero_s.owlCarousel({
+				loop: true,
+				margin: 0,
+				nav: true,
+				items: 1,
+				dots: true,
+				animateOut: 'fadeOut',
+				animateIn: 'fadeIn',
+				navText: ['<i class="flaticon-left-arrow-1"></i>', '<i class="flaticon-right-arrow-1"></i>'],
+				smartSpeed: 1200,
+				autoHeight: false,
+				autoplay: true,
+				onInitialized: function() {
+					var a = this.items().length;
+					$("#snh-1").html("<span>1</span><span>" + a + "</span>");
+				}
+				}).on("changed.owl.carousel", function(a) {
+					var b = --a.item.index, a = a.item.count;
+					$("#snh-1").html("<span> "+ (1 > b ? b + a : b > a ? b - a : b) + "</span><span>" + a + "</span>");
+				});
+
+			hero_s.append('<div class="slider-nav-warp"><div class="slider-nav"></div></div>');
+			$(".hero-slider .owl-nav, .hero-slider .owl-dots").appendTo('.slider-nav');
+			});
+			}).catch(function(error){
+				console.log(error);
+			});
+
+		
+
+			$('.product-slider').owlCarousel({
+				loop: true,
+				nav: true,
+				dots: false,
+				margin : 30,
+				autoplay: true,
+				navText: ['<i class="flaticon-left-arrow-1"></i>', '<i class="flaticon-right-arrow-1"></i>'],
+				responsive : {
+					0 : {
+						items: 1,
+					},
+					480 : {
+						items: 2,
+					},
+					768 : {
+						items: 3,
+					},
+					1200 : {
+						items: 4,
+					}
+				}
+				});
+			
+				$('.set-bg').each(function() {
+				var bg = $(this).data('setbg');
+				$(this).css('background-image', 'url(' + bg + ')');
+		})(jQuery);
 	</script>
 
 

@@ -55,17 +55,17 @@ $(window).on('load', function() {
 	/*------------------
 		Background Set
 	--------------------*/
-	$('.set-bg').each(function() {
+	/*$('.set-bg').each(function() {
 		var bg = $(this).data('setbg');
 		$(this).css('background-image', 'url(' + bg + ')');
-	});
+	});*/
 
 
 
 	/*------------------
 		Hero Slider
 	--------------------*/
-	var hero_s = $(".hero-slider");
+	/*var hero_s = $(".hero-slider");
     hero_s.owlCarousel({
         loop: true,
         margin: 0,
@@ -90,13 +90,13 @@ $(window).on('load', function() {
 
 	hero_s.append('<div class="slider-nav-warp"><div class="slider-nav"></div></div>');
 	$(".hero-slider .owl-nav, .hero-slider .owl-dots").appendTo('.slider-nav');
-
+*/
 
 
 	/*------------------
 		Brands Slider
 	--------------------*/
-	$('.product-slider').owlCarousel({
+	/*$('.product-slider').owlCarousel({
 		loop: true,
 		nav: true,
 		dots: false,
@@ -117,7 +117,7 @@ $(window).on('load', function() {
 				items: 4,
 			}
 		}
-	});
+	});*/
 
 
 	/*------------------

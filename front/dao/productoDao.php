@@ -114,10 +114,10 @@ class productoDao {
         //aca va la logica para eliminar
     }// eliminar
 
-    public static function listarSlider(){
+    public static function ListarDestacados(){
         $arrayObjetos= array();
         $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
-		$query = 'SELECT productos.idproductos,productos.nombre,productos.codigo,productos.precio,productos.descuento,productos.stockminimo,productos.stockactual,productos.foto,productos.video,productos.descripcioncorta,productos.descripcioncorta,productos.descripcionlarga,productos.destacado,productos.onsale,productos.mostrarhome,categoriasproductos.nombre as nombrecategoria FROM `productos` inner join categoriasproductos on productos.idcategoria=categoriasproductos.idcategoriasproductos where productos.destacado=1';
+		$query = 'SELECT productos.idproductos,productos.nombre,productos.codigo,productos.precio,productos.descuento,productos.stockminimo,productos.stockactual,productos.foto,productos.video,productos.descripcioncorta,productos.descripcioncorta,productos.descripcionlarga,productos.destacado,productos.onsale,productos.mostrarhome,categoriasproductos.nombre as nombrecategoria FROM `productos` where productos.destacado=1 inner join categoriasproductos on productos.idcategoria=categoriasproductos.idcategoriasproductos';
 		$STH = $DBH->prepare($query);
 		$STH->setFetchMode(PDO::FETCH_ASSOC);
 		$STH->execute();

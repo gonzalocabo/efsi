@@ -96,8 +96,8 @@ if(isset($_POST['accion'])){
         case 'eliminar':
             if(isset($_POST['id'])){
                 $slider=sliderDao::ObtenerPorID($_POST['id']);
-                if(file_exists($_SERVER["DOCUMENT_ROOT"] . "/admin/uploads/fotos/" . $slider->foto)) {
-                    unlink($_SERVER["DOCUMENT_ROOT"] . "/admin/uploads/fotos/" . $slider->foto);
+                if(file_exists($_SERVER["DOCUMENT_ROOT"] . "/uploads/fotos/" . $slider->foto)) {
+                    unlink($_SERVER["DOCUMENT_ROOT"] . "/uploads/fotos/" . $slider->foto);
                     sliderDao::eliminar($_POST['id']);
                     echo json_encode("true");
                 }else{

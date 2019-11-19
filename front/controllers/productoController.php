@@ -62,6 +62,15 @@ if(isset($_POST['accion'])){
                 echo json_encode("Error, id nulo");
             }
             break;
+        case 'listarProductosSlider':
+            $productos=productoDao::listarSlider();
+            foreach($productos as $item){
+                $aux['title']="a";
+                $aux['image']="/uploads/fotos/aaaa.jpeg";
+                $json[]=$aux;
+            }
+            echo json_encode($json);
+            break;
     }
 }else{
     echo json_encode("Accion nula");

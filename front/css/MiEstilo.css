@@ -5,3 +5,6 @@
 .Eliminar-col{
     padding-left: 50px;
 }
+.tachar{
+    text-decoration:line-through;
+}

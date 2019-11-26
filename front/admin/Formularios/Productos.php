@@ -120,7 +120,11 @@ if(isset($_GET['id'])){
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="file-input" class=" form-control-label">Foto</label></div>
-                                <div class="col-12 col-md-9"><input type="file" id="foto" name="foto" class="form-control-file"></div>
+                                <div class="col-12 col-md-9"><input type="file" id="foto" name="foto" class="form-control-file" onChange="displayImage(this)"></div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3"><label for="hf-email" class=" form-control-label"></label></div>
+                                <div class="col-12 col-md-9"><img id="imagen" class="ImagenUpload"/></div>
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="file-input" class=" form-control-label">Video</label></div>
@@ -242,7 +246,6 @@ if(isset($_GET['id'])){
                     formData.append('foto', "nofoto");
                 }else{
                     console.log("entro a set");
-                    formData.set('foto', foto);
                     formData.set('video', video);
                 }
                 if($('#destacado').is(':checked')){
@@ -275,6 +278,18 @@ if(isset($_GET['id'])){
 
         function Back(){
             window.history.back();
+        }
+
+        function displayImage(e) {
+            if (e.files[0]) {
+                var reader = new FileReader();
+                reader.readAsDataURL(e.files[0]);
+                reader.onload = function(e){
+                    $('#imagen').attr('src', e.target.result);
+                }          
+            }else{
+                $('#imagen').attr('src', "");
+            }
         }
     </script>
 

@@ -66,12 +66,12 @@ if(isset($_POST['accion'])){
             }
             break;
         case 'desactivar':
-        if(isset($_POST['id'])){
+            if(isset($_POST['id'])){
             categoriaDao::desactivar($_POST['id']);
             echo json_encode("true");
-        }else{
-            echo json_encode("Error, id nulo");
-        }
+            }else{
+                echo json_encode("Error, id nulo");
+            }
             break;
     }
 }else{

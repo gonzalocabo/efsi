@@ -89,73 +89,8 @@
 			<div class="section-title">
 				<h2>ULTIMOS PRODUCTOS</h2>
 			</div>
-			<div class="product-slider owl-carousel">
-				<div class="product-item">
-					<div class="pi-pic">
-						<img src="./img/product/1.jpg" alt="">
-						<div class="pi-links">
-							<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-						</div>
-					</div>
-					<div class="pi-text">
-						<h6>$35,00</h6>
-						<p>Flamboyant Pink Top </p>
-					</div>
-				</div>
-				<div class="product-item">
-					<div class="pi-pic">
-						<div class="tag-new">New</div>
-						<img src="./img/product/2.jpg" alt="">
-						<div class="pi-links">
-							<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-						</div>
-					</div>
-					<div class="pi-text">
-						<h6>$35,00</h6>
-						<p>Black and White Stripes Dress</p>
-					</div>
-				</div>
-				<div class="product-item">
-					<div class="pi-pic">
-						<img src="./img/product/3.jpg" alt="">
-						<div class="pi-links">
-							<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-						</div>
-					</div>
-					<div class="pi-text">
-						<h6>$35,00</h6>
-						<p>Flamboyant Pink Top </p>
-					</div>
-				</div>
-				<div class="product-item">
-						<div class="pi-pic">
-							<img src="./img/product/4.jpg" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
-				<div class="product-item">
-						<div class="pi-pic">
-							<img src="./img/product/6.jpg" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
+			<div class="product-slider owl-carousel" id="productosSlider">
+				
 			</div>
 		</div>
 	</section>
@@ -169,141 +104,14 @@
 			<div class="section-title">
 				<h2>BUSCA EN LOS MAS VENDIDOS</h2>
 			</div>
-			<ul class="product-filter-menu">
-				<li><a href="#">TOPS</a></li>
-				<li><a href="#">JUMPSUITS</a></li>
-				<li><a href="#">LINGERIE</a></li>
-				<li><a href="#">JEANS</a></li>
-				<li><a href="#">DRESSES</a></li>
-				<li><a href="#">COATS</a></li>
-				<li><a href="#">JUMPERS</a></li>
-				<li><a href="#">LEGGINGS</a></li>
+			<ul class="product-filter-menu text-center" id="filtroCategorias">
+				<li><a href="javascript:FiltrarPorCategoria('todas');">Todas</a></li>
 			</ul>
-			<div class="row">
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<img src="./img/product/5.jpg" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<div class="tag-sale">ON SALE</div>
-							<img src="./img/product/6.jpg" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Black and White Stripes Dress</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<img src="./img/product/7.jpg" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<img src="./img/product/8.jpg" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<img src="./img/product/9.jpg" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<img src="./img/product/10.jpg" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Black and White Stripes Dress</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<img src="./img/product/11.jpg" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<img src="./img/product/12.jpg" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
-				</div>
+			<div class="row" id="productosHome">
+				
 			</div>
 			<div class="text-center pt-5">
-				<button class="site-btn sb-line sb-dark">CARGAR MAS</button>
+				<button class="site-btn sb-line sb-dark" onclick="CargarMas();">CARGAR MAS</button>
 			</div>
 		</div>
 	</section>
@@ -312,14 +120,7 @@
 
 	<!-- Banner section -->
 	<section class="banner-section">
-		<div class="container">
-			<div class="banner set-bg" data-setbg="img/banner-bg.jpg">
-				<div class="tag-new">NEW</div>
-				<span>RECIEN LLEGADOS</span>
-				<h2>REMERAS</h2>
-				<a href="#" class="site-btn">COMPRA AHORA</a>
-			</div>
-		</div>
+		
 	</section>
 	<!-- Banner section end  -->
 
@@ -347,9 +148,11 @@
 	<script src="/admin/vendors/axios/axios.min.js"></script>
 
 	<script>
+		var _Productos;
+		var i=0;
 		(function($){
 
-			const formData = new FormData();
+			var formData = new FormData();
 			formData.append('accion', 'listarOwlCarousel');
 			axios.post('http://localhost/controllers/sliderController.php',formData)
             .then(function (response) {
@@ -358,7 +161,49 @@
                 {
 					$('#sliderBanner').append('<div class="hs-item set-bg" data-setbg="/uploads/fotos/'+value+'"></div>')
 				});
-				var hero_s = $(".hero-slider");
+				InicializarSliderPrincipal();
+			}).catch(function(error){console.log(error);});
+
+			formData=new FormData();
+			formData.append('accion','listarDestacados');
+			axios.post('http://localhost/controllers/productoController.php',formData).then(function(response){
+				console.log(response.data);
+				$.each(response.data,function(index,value){
+					$('#productosSlider').append(BindearProductos(value));
+				});
+				Productos=response.data;
+				IniciarlizarSliderProductos();
+			}).catch(function(error){console.log(error);});
+
+			formData=new FormData();
+			formData.append("accion","listarActivos");
+			axios.post('http://localhost/controllers/categoriaController.php',formData).then(function(response){
+				console.log(response.data);
+				$.each(response.data,function(index,value){
+					var a="'"+value.nombre+"'";
+					$('#filtroCategorias').append('<li><a href="javascript:FiltrarPorCategoria('+a+');">'+value.nombre+'</a></li>');
+				});
+			}).catch(function(error){console.error(error);});
+			
+			formData=new FormData();
+			formData.append('accion','listarMostrarHome');
+			axios.post('http://localhost/controllers/productoController.php',formData).then(function(response){
+				console.log(response.data);
+				_Productos=response.data;
+				while(i<response.data.length&&i<8){
+					var value=response.data[i];
+					$('#productosHome').append('<div class="col-lg-3 col-sm-6">'+BindearProductos(value)+'</div>');
+					i++;
+				}
+
+			}).catch(function(error){console.error(error);})
+
+			
+				
+		})(jQuery);
+
+		function InicializarSliderPrincipal(){
+			var hero_s = $(".hero-slider");
 				hero_s.owlCarousel({
 				loop: true,
 				margin: 0,
@@ -380,17 +225,18 @@
 					$("#snh-1").html("<span> "+ (1 > b ? b + a : b > a ? b - a : b) + "</span><span>" + a + "</span>");
 				});
 
-			hero_s.append('<div class="slider-nav-warp"><div class="slider-nav"></div></div>');
-			$(".hero-slider .owl-nav, .hero-slider .owl-dots").appendTo('.slider-nav');
-			});
-			}).catch(function(error){
-				console.log(error);
-			});
+				hero_s.append('<div class="slider-nav-warp"><div class="slider-nav"></div></div>');
+				$(".hero-slider .owl-nav, .hero-slider .owl-dots").appendTo('.slider-nav');
 
-		
-
+				$('.set-bg').each(function() {
+					var bg = $(this).data('setbg');
+					$(this).css('background-image', 'url(' + bg + ')');
+					});
+		}
+		function IniciarlizarSliderProductos(){
 			$('.product-slider').owlCarousel({
-				loop: true,
+				loop: false,
+				rewind: true,
 				nav: true,
 				dots: false,
 				margin : 30,
@@ -411,11 +257,45 @@
 					}
 				}
 				});
+		}
+
+		function BindearProductos(value){
+			var binded='<div class="product-item"><div class="pi-pic">';
+			if(value.onSale==1){
+				binded+='<div class="tag-sale">ON SALE</div>';
+			}else{
+				if(value.descuento>0){
+					binded+='<div class="tag-sale" style="font-size: 15px">-'+value.descuento+'%</div>';
+				}
+			}
+			binded+='<img src="/uploads/fotos/productos/'+value.foto+'" alt="imagen"><div class="pi-links"><a href="#" class="add-card"><i class="flaticon-bag"></i><span>AÑADIR AL CARRITO</span></a></div></div><div class="pi-text"><h6>$'+(value.precio*(100-value.descuento))/100+'</h6><p>'+value.nombre+' </p></div></div>';
+			return binded;
+		}
+
+		function CargarMas(){
+			while(i<_Productos&&i<8){
+				var value=response.data[i];
+				$('#productosHome').append('<div class="col-lg-3 col-sm-6"><div class="product-item"><div class="pi-pic"><img src="/uploads/fotos/productos/'+value.foto+'" alt=""><div class="pi-links"><a href="#" class="add-card"><i class="flaticon-bag"></i><span>AÑADIR AL CARRITO</span></a></div></div><div class="pi-text"><h6>$'+(value.precio*(100-value.descuento))/100+'</h6><p>'+value.nombre+' </p></div></div></div>');
+				i++;
+			}
 			
-				$('.set-bg').each(function() {
-				var bg = $(this).data('setbg');
-				$(this).css('background-image', 'url(' + bg + ')');
-		})(jQuery);
+		}
+		function FiltrarPorCategoria(nombre){
+			$('#productosHome').empty();
+			if(nombre=="todas"){
+				$.each(_Productos,function(index,value){
+					$('#productosHome').append('<div class="col-lg-3 col-sm-6">'+BindearProductos(value)+'</div>');
+				});
+			}else{
+				$.each(_Productos,function(index,value){
+					if(value.categoria==nombre){
+						$('#productosHome').append('<div class="col-lg-3 col-sm-6">'+BindearProductos(value)+'</div>');
+					}
+				});
+			}
+			return;
+		}
+
 	</script>
 
 

@@ -22,6 +22,7 @@
 	<link rel="stylesheet" href="css/owl.carousel.min.css"/>
 	<link rel="stylesheet" href="css/animate.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/MiEstilo.css"/>
 
 
 	<!--[if lt IE 9]>
@@ -60,314 +61,22 @@
 			<div class="row">
 				<div class="col-lg-3 order-2 order-lg-1">
 					<div class="filter-widget">
-						<h2 class="fw-title">Categorias</h2>
-						<ul class="category-menu">
-							<li><a href="#">Mujeres</a>
-								<ul class="sub-menu">
-									<li><a href="#">Midi Dresses <span>(2)</span></a></li>
-									<li><a href="#">Maxi Dresses<span>(56)</span></a></li>
-									<li><a href="#">Prom Dresses<span>(36)</span></a></li>
-									<li><a href="#">Little Black Dresses <span>(27)</span></a></li>
-									<li><a href="#">Mini Dresses<span>(19)</span></a></li>
-								</ul>
-							</li>
-							<li><a href="#">Hombres</a>
-								<ul class="sub-menu">
-									<li><a href="#">Midi Dresses <span>(2)</span></a></li>
-									<li><a href="#">Maxi Dresses<span>(56)</span></a></li>
-									<li><a href="#">Prom Dresses<span>(36)</span></a></li>
-								</ul></li>
-							<li><a href="#">Niños</a></li>
-						</ul>
-					</div>
-					<div class="filter-widget mb-0">
-						<h2 class="fw-title">Filtrar por</h2>
-						<div class="price-range-wrap">
-							<h4>Precio</h4>
-                            <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content" data-min="10" data-max="270">
-								<div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0%; width: 100%;"></div>
-								<span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 0%;">
-								</span>
-								<span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 100%;">
-								</span>
-							</div>
-							<div class="range-slider">
-                                <div class="price-input">
-                                    <input type="text" id="minamount">
-                                    <input type="text" id="maxamount">
-                                </div>
-                            </div>
-                        </div>
-					</div>
-					<div class="filter-widget mb-0">
-						<h2 class="fw-title">Color</h2>
-						<div class="fw-color-choose">
-							<div class="cs-item">
-								<input type="radio" name="cs" id="gray-color">
-								<label class="cs-gray" for="gray-color">
-									<span>(3)</span>
-								</label>
-							</div>
-							<div class="cs-item">
-								<input type="radio" name="cs" id="orange-color">
-								<label class="cs-orange" for="orange-color">
-									<span>(25)</span>
-								</label>
-							</div>
-							<div class="cs-item">
-								<input type="radio" name="cs" id="yollow-color">
-								<label class="cs-yollow" for="yollow-color">
-									<span>(112)</span>
-								</label>
-							</div>
-							<div class="cs-item">
-								<input type="radio" name="cs" id="green-color">
-								<label class="cs-green" for="green-color">
-									<span>(75)</span>
-								</label>
-							</div>
-							<div class="cs-item">
-								<input type="radio" name="cs" id="purple-color">
-								<label class="cs-purple" for="purple-color">
-									<span>(9)</span>
-								</label>
-							</div>
-							<div class="cs-item">
-								<input type="radio" name="cs" id="blue-color" checked="">
-								<label class="cs-blue" for="blue-color">
-									<span>(29)</span>
-								</label>
-							</div>
+						<h2 class="fw-title">Vista</h2>
+						<div class="row ml-2">
+							<a class="fa fa-list" title="Lista" href="javascript:Renderizar('Lista');"></a>
+							<a class="fa fa-th-large ml-5" title="Lista" href="javascript:Renderizar('Grilla');"></a>
 						</div>
-					</div>
-					<div class="filter-widget mb-0">
-						<h2 class="fw-title">Talle</h2>
-						<div class="fw-size-choose">
-							<div class="sc-item">
-								<input type="radio" name="sc" id="xs-size">
-								<label for="xs-size">XS</label>
-							</div>
-							<div class="sc-item">
-								<input type="radio" name="sc" id="s-size">
-								<label for="s-size">S</label>
-							</div>
-							<div class="sc-item">
-								<input type="radio" name="sc" id="m-size"  checked="">
-								<label for="m-size">M</label>
-							</div>
-							<div class="sc-item">
-								<input type="radio" name="sc" id="l-size">
-								<label for="l-size">L</label>
-							</div>
-							<div class="sc-item">
-								<input type="radio" name="sc" id="xl-size">
-								<label for="xl-size">XL</label>
-							</div>
-							<div class="sc-item">
-								<input type="radio" name="sc" id="xxl-size">
-								<label for="xxl-size">XXL</label>
-							</div>
-						</div>
-					</div>
+					</div>	
 					<div class="filter-widget">
-						<h2 class="fw-title">Marcas</h2>
-						<ul class="category-menu">
-							<li><a href="#">Abercrombie & Fitch <span>(2)</span></a></li>
-							<li><a href="#">Asos<span>(56)</span></a></li>
-							<li><a href="#">Bershka<span>(36)</span></a></li>
-							<li><a href="#">Missguided<span>(27)</span></a></li>
-							<li><a href="#">Zara<span>(19)</span></a></li>
+						<h2 class="fw-title">Categorias</h2>
+						<ul class="category-menu" id="categorias">
+							
 						</ul>
 					</div>
 				</div>
-
 				<div class="col-lg-9  order-1 order-lg-2 mb-5 mb-lg-0">
-					<div class="row">
-						<div class="col-lg-4 col-sm-6">
-							<div class="product-item">
-								<div class="pi-pic">
-									<div class="tag-sale">ON SALE</div>
-									<img src="./img/product/6.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>$35,00</h6>
-									<p>Black and White Stripes Dress</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6">
-							<div class="product-item">
-								<div class="pi-pic">
-									<img src="./img/product/7.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>$35,00</h6>
-									<p>Flamboyant Pink Top</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6">
-							<div class="product-item">
-								<div class="pi-pic">
-									<img src="./img/product/8.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>$35,00</h6>
-									<p>Flamboyant Pink Top </p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6">
-							<div class="product-item">
-								<div class="pi-pic">
-									<img src="./img/product/10.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>$35,00</h6>
-									<p>Black and White Stripes Dress</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6">
-							<div class="product-item">
-								<div class="pi-pic">
-									<img src="./img/product/11.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>$35,00</h6>
-									<p>Flamboyant Pink Top</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6">
-							<div class="product-item">
-								<div class="pi-pic">
-									<img src="./img/product/12.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>$35,00</h6>
-									<p>Flamboyant Pink Top </p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6">
-							<div class="product-item">
-								<div class="pi-pic">
-									<img src="./img/product/5.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>$35,00</h6>
-									<p>Flamboyant Pink Top</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6">
-							<div class="product-item">
-								<div class="pi-pic">
-									<img src="./img/product/9.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>$35,00</h6>
-									<p>Flamboyant Pink Top</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6">
-							<div class="product-item">
-								<div class="pi-pic">
-									<img src="./img/product/1.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>$35,00</h6>
-									<p>Flamboyant Pink Top </p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6">
-							<div class="product-item">
-								<div class="pi-pic">
-									<div class="tag-new">new</div>
-									<img src="./img/product/2.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>$35,00</h6>
-									<p>Black and White Stripes Dress</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6">
-							<div class="product-item">
-								<div class="pi-pic">
-									<img src="./img/product/3.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>$35,00</h6>
-									<p>Flamboyant Pink Top </p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6">
-							<div class="product-item">
-								<div class="pi-pic">
-									<img src="./img/product/4.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>$35,00</h6>
-									<p>Flamboyant Pink Top </p>
-								</div>
-							</div>
-						</div>
-						<div class="text-center w-100 pt-3">
-							<button class="site-btn sb-line sb-dark">Cargar mas</button>
-						</div>
+					<div class="row" id="productos">
+						
 					</div>
 				</div>
 			</div>
@@ -391,6 +100,85 @@
 	<script src="js/jquery.zoom.min.js"></script>
 	<script src="js/jquery-ui.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src="/admin/vendors/axios/axios.min.js"></script>
+
+
+	<script>
+
+		var _Productos;
+
+		(function($){
+			var formData=new FormData();
+			formData.append('accion',"listarActivos");
+			axios.post("http://localhost/controllers/categoriaController.php",formData).then(function(response){
+				console.log(response.data);
+				$.each(response.data,function(index,value){
+					$('#categorias').append('<li><a href="javascript:Desactivar('+value.nombre+')">'+value.nombre+'</a></li>')
+				});
+			}).catch(function(error){console.log(error);});
+
+			formData=new FormData();
+			formData.append('accion','listar');
+			axios.post("http://localhost/controllers/productoController.php",formData).then(function(response){
+				console.log(response.data);
+				_Productos=response.data;
+				$.each(response.data,function(index,value){
+						RenderGrilla(value);					
+				});
+			}).catch(function(error){console.log(error);});
+
+						
+
+
+		})(jQuery);
+
+		function Renderizar(forma){
+			$('#productos').empty();
+			if(forma=="Lista"){
+				$.each(_Productos,function(index,value){
+					RenderLista(value);
+				});
+			}else{
+				$.each(_Productos,function(index,value){
+					RenderGrilla(value);
+				});
+			}
+		}
+
+		function RenderGrilla(value){
+			var append='<div class="col-lg-4 col-sm-6"><div class="product-item"><div class="pi-pic">';
+					var precio;
+					if(value.onSale==1){
+						append+='<div class="tag-sale">ON SALE</div>';
+					}else{
+						if(value.descuento>0){
+							append+='<div class="tag-sale>-'+value.descuento+'%</div>';
+						}
+					}
+
+					if(value.descuento>0){
+						precio='<div class="text-right"><h6 class="tachar">$'+value.precio+'</h6><h6>$'+value.precio*(100-value.descuento)/100+'</h6></div>';
+					}else{
+						precio='<h6>$'+value.precio+'</h6>';
+					}
+					append+='<img src="/uploads/fotos/productos/'+value.foto+'"alt=""><div class="pi-links"><a href="#" class="add-card"><i class="flaticon-bag"></i><span>AÑADIR AL CARRITO</span></a></div></div><div class="pi-text">';
+					append+='<div><p >'+value.nombre+'</p>'+precio+'</div></div></div></div>';
+					$('#productos').append(append);
+		}
+
+		function RenderLista(value){
+			var append='<ul class="list-group shadow" style="width:100%"><li class="list-group-item"><div class="media align-items-lg-center flex-column flex-lg-row p-3"><div class="media-body order-2 order-lg-1"><h5 class="mt-0 font-weight-bold mb-2">'+value.nombre+'</h5><p class="font-italic text-muted mb-0 small">'+value.descripcionCorta+'<div class="d-flex align-items-center justify-content-between mt-1">';
+            var precio;
+			if(value.descuento>0){
+				precio='<h6 class="font-weight-bold my-2 tachar">$'+value.precio+'</h6><h6 class="font-weight-bold my-2">$'+value.precio*(100-value.descuento)/100+'</h6>';
+			}else{
+				precio='<h6 class="font-weight-bold my-2">'+value.precio+'</h6>';
+			}
+			append+=precio+'</div></div><img src="/uploads/fotos/78071bg.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2"></div></li></ul>';
+			$('#productos').append(append);
+		}
+
+	</script>
 
 	</body>
 </html>

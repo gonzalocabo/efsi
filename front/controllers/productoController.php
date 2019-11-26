@@ -97,6 +97,14 @@ if(isset($_POST['accion'])){
             $resultado=productoDao::ListarMostrarHome();
             echo json_encode($resultado);
             break;
+        case 'listarPorCategoria':
+            if(isset($_POST['id'])){
+                $resultado = productoDao::ObtenerPorCategoria($_POST['id']);
+                echo json_encode($resultado);        
+            }else{
+                echo json_encode("Error, no pasa ID");
+            }
+            break; 
     }
 }else{
     echo json_encode("Accion nula");

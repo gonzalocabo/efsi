@@ -206,7 +206,7 @@ $(window).on('load', function() {
 	/*------------------
 		Single Product
 	--------------------*/
-	$('.product-thumbs-track > .pt').on('click', function(){
+	/*$('.product-thumbs-track > .pt').on('click', function(){
 		$('.product-thumbs-track .pt').removeClass('active');
 		$(this).addClass('active');
 		var imgurl = $(this).data('imgbigurl');
@@ -218,7 +218,7 @@ $(window).on('load', function() {
 	});
 
 
-	$('.product-pic-zoom').zoom();
+	$('.product-pic-zoom').zoom();*/
 
     /*==================================================================
     [ Focus input ]*/

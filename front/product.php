@@ -61,50 +61,16 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="product-pic-zoom">
-						<img class="product-big-img" src="img/single-product/1.jpg" alt="">
-					</div>
-					<div class="product-thumbs" tabindex="1" style="overflow: hidden; outline: none;">
-						<div class="product-thumbs-track">
-							<div class="pt active" data-imgbigurl="img/single-product/1.jpg"><img src="img/single-product/thumb-1.jpg" alt=""></div>
-							<div class="pt" data-imgbigurl="img/single-product/2.jpg"><img src="img/single-product/thumb-2.jpg" alt=""></div>
-							<div class="pt" data-imgbigurl="img/single-product/3.jpg"><img src="img/single-product/thumb-3.jpg" alt=""></div>
-							<div class="pt" data-imgbigurl="img/single-product/4.jpg"><img src="img/single-product/thumb-4.jpg" alt=""></div>
-						</div>
+					<div class="product-pic-zoom" id="imagenProducto">
+						
 					</div>
 				</div>
 				<div class="col-lg-6 product-details">
-					<h2 class="p-title">White peplum top</h2>
-					<h3 class="p-price">$39.90</h3>
+					<h2 class="p-title" id="nombre"></h2>
+					<h3 class="p-price" id="precio">$39.90</h3>
 					<h4 class="p-stock">Disponible: <span>En stock</span></h4>
 					
-					<div class="fw-size-choose mt-4">
-						<p>Talle</p>
-						<div class="sc-item">
-							<input type="radio" name="sc" id="xs-size">
-							<label for="xs-size">32</label>
-						</div>
-						<div class="sc-item">
-							<input type="radio" name="sc" id="s-size">
-							<label for="s-size">34</label>
-						</div>
-						<div class="sc-item">
-							<input type="radio" name="sc" id="m-size" checked="">
-							<label for="m-size">36</label>
-						</div>
-						<div class="sc-item">
-							<input type="radio" name="sc" id="l-size">
-							<label for="l-size">38</label>
-						</div>
-						<div class="sc-item disable">
-							<input type="radio" name="sc" id="xl-size" disabled>
-							<label for="xl-size">40</label>
-						</div>
-						<div class="sc-item">
-							<input type="radio" name="sc" id="xxl-size">
-							<label for="xxl-size">42</label>
-						</div>
-					</div>
+					
 					<div class="quantity">
 						<p>Cantidad</p>
                         <div class="pro-qty"><input type="text" value="1"></div>
@@ -256,6 +222,44 @@
 	<script src="js/jquery.zoom.min.js"></script>
 	<script src="js/jquery-ui.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src="/admin/vendors/axios/axios.min.js"></script>
+
+
+	<script>
+		(function ($){
+
+			var formData=new FormData();
+			var id=<?php echo $_GET['idProducto'] ?>
+
+
+			formData.append('accion','obtenerporid');
+			formData.append('id',id);
+
+			axios.post("http://localhost/controllers/productoController.php",formData).then(function(response){
+				console.log(response.data);
+				$('#imagenProducto').append('<img class="product-big-img" src="/uploads/fotos/productos/'+response.data.foto+'"alt="">');
+				$('#nombre').html(response.data.nombre);
+				$('#precio').html('$'+response.data.precio);
+				zoom();
+			}).catch(function(error){console.log(error);});
+			
+		})(jQuery);
+
+		function zoom(){
+			$('.product-thumbs-track > .pt').on('click', function(){
+			$('.product-thumbs-track .pt').removeClass('active');
+			$(this).addClass('active');
+			var imgurl = $(this).data('imgbigurl');
+			var bigImg = $('.product-big-img').attr('src');
+			if(imgurl != bigImg) {
+				$('.product-big-img').attr({src: imgurl});
+				$('.zoomImg').attr({src: imgurl});
+				}
+			});
+			$('.product-pic-zoom').zoom();
+		}
+
+	</script>
 
 	</body>
 </html>

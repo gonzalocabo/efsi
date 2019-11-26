@@ -1,3 +1,12 @@
+<?php
+if(isset($_GET['idCategoria'])){
+    $id = $_GET['idCategoria'];
+}else{
+    $id = 0;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -70,7 +79,7 @@
 					<div class="filter-widget">
 						<h2 class="fw-title">Categorias</h2>
 						<ul class="category-menu" id="categorias">
-							
+							<li><a href="javascript:FiltrarPorCategoria('todas')">Todas</a></li>
 						</ul>
 					</div>
 				</div>
@@ -108,24 +117,41 @@
 		var _Productos;
 
 		(function($){
+			var idCategoria=<?php echo $id ?>;
 			var formData=new FormData();
+
 			formData.append('accion',"listarActivos");
 			axios.post("http://localhost/controllers/categoriaController.php",formData).then(function(response){
 				console.log(response.data);
 				$.each(response.data,function(index,value){
-					$('#categorias').append('<li><a href="javascript:Desactivar('+value.nombre+')">'+value.nombre+'</a></li>')
+					var aux="'"+value.nombre+"'";
+					$('#categorias').append('<li><a href="javascript:FiltrarPorCategoria('+aux+')">'+value.nombre+'</a></li>')
 				});
 			}).catch(function(error){console.log(error);});
 
-			formData=new FormData();
-			formData.append('accion','listar');
-			axios.post("http://localhost/controllers/productoController.php",formData).then(function(response){
-				console.log(response.data);
-				_Productos=response.data;
-				$.each(response.data,function(index,value){
-						RenderGrilla(value);					
-				});
-			}).catch(function(error){console.log(error);});
+			if(idCategoria!=0){
+				formData=new FormData();
+				formData.append('accion','listarPorCategoria');
+				formData.append('id',idCategoria);
+				axios.post("http://localhost/controllers/productoController.php",formData).then(function(response){
+					console.log(response.data);
+					_Productos=response.data;
+					$.each(response.data,function(index,value){
+							RenderGrilla(value);					
+					});
+				}).catch(function(error){console.log(error);});
+			}else{
+				formData=new FormData();
+				formData.append('accion','listar');
+				axios.post("http://localhost/controllers/productoController.php",formData).then(function(response){
+					console.log(response.data);
+					_Productos=response.data;
+					$.each(response.data,function(index,value){
+							RenderGrilla(value);					
+					});
+				}).catch(function(error){console.log(error);});
+			}
+			
 
 						
 
@@ -174,8 +200,24 @@
 			}else{
 				precio='<h6 class="font-weight-bold my-2">'+value.precio+'</h6>';
 			}
-			append+=precio+'</div></div><img src="/uploads/fotos/78071bg.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2"></div></li></ul>';
+			append+=precio+'</div></div><img src="/uploads/fotos/productos/'+value.foto+'" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2"></div></li></ul>';
 			$('#productos').append(append);
+		}
+
+		function FiltrarPorCategoria(categoria){
+			$('#productos').empty();
+			if(categoria!="todas"){
+				$.each(_Productos,function(index,value){
+					if(value.categoria==categoria){
+						RenderGrilla(value);
+					}
+				});
+			}else{
+				$.each(_Productos,function(index,value){
+					RenderGrilla(value);
+				});
+			}
+			
 		}
 
 	</script>

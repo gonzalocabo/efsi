@@ -180,7 +180,7 @@ if(isset($_GET['id'])){
 
     <!-- Right Panel -->
 
-
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <script src="../vendors/popper.js/dist/umd/popper.min.js"></script>
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -194,6 +194,8 @@ if(isset($_GET['id'])){
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <script src="../vendors/jquery/dist/jquery.formHelper.js"></script>
     <script src="../vendors/axios/axios.min.js"></script>
+    <script src="../js/app.js"></script>
+
 
     <script>
         (function($){

@@ -40,145 +40,148 @@ if(isset($_GET['id'])){
 </head>
 
 <body>
-    <!-- Left Panel -->
 
-    <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/Left-panel.php');
-    ?>
+    <div id="app">
+        <!-- Left Panel -->
 
-    <!-- Left Panel -->
+        <?php
+            require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/Left-panel.php');
+        ?>
 
-    <!-- Right Panel -->
+        <!-- Left Panel -->
 
-    <div id="right-panel" class="right-panel">
+        <!-- Right Panel -->
 
-        <!-- Header-->
-            <?php
-                require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/Header.php');
-            ?>
-        <!-- /header -->
-        <!-- Header-->
+        <div id="right-panel" class="right-panel">
 
-        <div class="breadcrumbs">
-            <div class="col-sm-4">
-                <div class="page-header float-left">
-                    <div class="page-title">
-                        <h1>Productos</h1>
+            <!-- Header-->
+                <?php
+                    require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/Header.php');
+                ?>
+            <!-- /header -->
+            <!-- Header-->
+
+            <div class="breadcrumbs">
+                <div class="col-sm-4">
+                    <div class="page-header float-left">
+                        <div class="page-title">
+                            <h1>Productos</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="page-header float-right">
+                        <div class="page-title">
+                            <ol class="breadcrumb text-right">
+                                <li><a href="#">Modificar</a></li>
+                                <li>Productos</li>
+                                <li class="active" id="Actual">Insertar productos</li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-8">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                        <ol class="breadcrumb text-right">
-                            <li><a href="#">Modificar</a></li>
-                            <li>Productos</li>
-                            <li class="active" id="Actual">Insertar productos</li>
-                        </ol>
+            <div class="content mt-3">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Insertar productos</strong>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="content mt-3">
-            <div class="card">
-                <div class="card-header">
-                    <strong>Insertar productos</strong>
-                </div>
-               <div class="card-body card-block">
-                    <form action="" method="post" id="formulario" name="formulario" enctype="multipart/form-data" class="form-horizontal">
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nombre</label></div>
-                                <div class="col-12 col-md-9"><input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control"><small class="form-text text-muted">Ingrese el nombre</small></div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Codigo</label></div>
-                                <div class="col-12 col-md-9"><input type="text" id="codigo" name="codigo" placeholder="Codigo" class="form-control"><small class="form-text text-muted">Ingrese el codigo</small></div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Precio</label></div>
-                                <div class="col-12 col-md-9"><input type="text" id="precio" name="precio" placeholder="Precio" class="form-control"><small class="form-text text-muted">Ingrese el precio</small></div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Descuento en %</label></div>
-                                <div class="col-12 col-md-9"><input type="text" id="descuento" name="descuento" placeholder="Descuento" class="form-control"><small class="form-text text-muted">Ingrese el descuento en %</small></div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Stock minimo</label></div>
-                                <div class="col-12 col-md-9"><input type="text" id="stockMinimo" name="stockMinimo" placeholder="Stock minimo" class="form-control"><small class="form-text text-muted">Ingrese el stock minimo</small></div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Stock actual</label></div>
-                                <div class="col-12 col-md-9"><input type="text" id="stockActual" name="stockActual" placeholder="Stock actual" class="form-control"><small class="form-text text-muted">Ingrese el stock actual</small></div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label for="categoria" class=" form-control-label">Categoria</label></div>
-                                    <div class="col-12 col-md-9">
-                                        <select name="categoria" id="categoria" class="form-control">
-                                            <option value="0">Seleccionar</option>
-                                        </select>
-                                    </div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label for="file-input" class=" form-control-label">Foto</label></div>
-                                <div class="col-12 col-md-9"><input type="file" id="foto" name="foto" class="form-control-file" onChange="displayImage(this)"></div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label for="hf-email" class=" form-control-label"></label></div>
-                                <div class="col-12 col-md-9"><img id="imagen" class="ImagenUpload"/></div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label for="file-input" class=" form-control-label">Video</label></div>
-                                <div class="col-12 col-md-9"><input type="file" id="video" name="video" class="form-control-file"></div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Descripcion corta</label></div>
-                                <div class="col-12 col-md-9"><input type="text" id="descripcionCorta" name="descripcionCorta" placeholder="Descripcion corta" class="form-control"></div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Descripcion larga</label></div>
-                                <div class="col-12 col-md-9"><textarea name="descripcionLarga" id="descripcionLarga" rows="7" placeholder="Descripcion.." class="form-control"></textarea></div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label class=" form-control-label"></label></div>
-                                <div class="col col-md-9">
-                                    <div class="form-check">
-                                        <div class="checkbox">
-                                            <label for="checkbox1" class="form-check-label ">
-                                                <input type="checkbox" id="destacado" name="destacado" class="form-check-input">Destacado
-                                            </label>
+                <div class="card-body card-block">
+                        <form action="" method="post" id="formulario" name="formulario" enctype="multipart/form-data" class="form-horizontal">
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nombre</label></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="nombre" v-model="producto.nombre" name="nombre" placeholder="Nombre" class="form-control"><small class="form-text text-muted">Ingrese el nombre</small></div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Codigo</label></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="codigo" name="codigo" placeholder="Codigo" class="form-control"><small class="form-text text-muted">Ingrese el codigo</small></div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Precio</label></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="precio" name="precio" placeholder="Precio" class="form-control"><small class="form-text text-muted">Ingrese el precio</small></div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Descuento en %</label></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="descuento" name="descuento" placeholder="Descuento" class="form-control"><small class="form-text text-muted">Ingrese el descuento en %</small></div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Stock minimo</label></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="stockMinimo" name="stockMinimo" placeholder="Stock minimo" class="form-control"><small class="form-text text-muted">Ingrese el stock minimo</small></div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Stock actual</label></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="stockActual" name="stockActual" placeholder="Stock actual" class="form-control"><small class="form-text text-muted">Ingrese el stock actual</small></div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="categoria" class=" form-control-label">Categoria</label></div>
+                                        <div class="col-12 col-md-9">
+                                            <select name="categoria" id="categoria" class="form-control">
+                                                <option value="0">Seleccionar</option>
+                                            </select>
                                         </div>
-                                        <div class="checkbox">
-                                            <label for="checkbox2" class="form-check-label ">
-                                                <input type="checkbox" id="onSale" name="onSale" class="form-check-input">OnSale
-                                            </label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label for="checkbox2" class="form-check-label ">
-                                                <input type="checkbox" id="mostrarHome" name="mostrarHome" class="form-check-input">Mostrar en home
-                                            </label>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="file-input" class=" form-control-label">Foto</label></div>
+                                    <div class="col-12 col-md-9"><input type="file" id="foto" name="foto" class="form-control-file" onChange="displayImage(this)"></div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="hf-email" class=" form-control-label"></label></div>
+                                    <div class="col-12 col-md-9"><img id="imagen" class="ImagenUpload"/></div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="file-input" class=" form-control-label">Video</label></div>
+                                    <div class="col-12 col-md-9"><input type="file" id="video" name="video" class="form-control-file"></div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Descripcion corta</label></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="descripcionCorta" name="descripcionCorta" placeholder="Descripcion corta" class="form-control"></div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Descripcion larga</label></div>
+                                    <div class="col-12 col-md-9"><textarea name="descripcionLarga" id="descripcionLarga" rows="7" placeholder="Descripcion.." class="form-control"></textarea></div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label class=" form-control-label"></label></div>
+                                    <div class="col col-md-9">
+                                        <div class="form-check">
+                                            <div class="checkbox">
+                                                <label for="checkbox1" class="form-check-label ">
+                                                    <input type="checkbox" id="destacado" name="destacado" class="form-check-input">Destacado
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label for="checkbox2" class="form-check-label ">
+                                                    <input type="checkbox" id="onSale" name="onSale" class="form-check-input">OnSale
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label for="checkbox2" class="form-check-label ">
+                                                    <input type="checkbox" id="mostrarHome" name="mostrarHome" class="form-check-input">Mostrar en home
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        </form>
-                        <div class="card-footer text-center">
-                            <button type="submit" class="btn btn-success btn-sm" onclick="Validar();">
-                                <i class="fa fa-dot-circle-o"></i> Aceptar
-                            </button>
-                            <button type="reset" class="btn btn-danger btn-sm" onclick="Back();">
-                                <i class="fa fa-ban"></i> Cancelar
-                            </button>
+                            
+                            </form>
+                            <div class="card-footer text-center">
+                                <button type="submit" class="btn btn-success btn-sm" onclick="Validar();">
+                                    <i class="fa fa-dot-circle-o"></i> Aceptar
+                                </button>
+                                <button type="reset" class="btn btn-danger btn-sm" onclick="Back();">
+                                    <i class="fa fa-ban"></i> Cancelar
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-        </div><!-- .content -->
+            </div><!-- .content -->
 
 
-    </div><!-- /#right-panel -->
+        </div><!-- /#right-panel -->
 
-    <!-- Right Panel -->
+        <!-- Right Panel -->
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="../vendors/jquery/dist/jquery.min.js"></script>

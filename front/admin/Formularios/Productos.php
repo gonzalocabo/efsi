@@ -94,29 +94,30 @@ if(isset($_GET['id'])){
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Codigo</label></div>
-                                    <div class="col-12 col-md-9"><input type="text" id="codigo" name="codigo" placeholder="Codigo" class="form-control"><small class="form-text text-muted">Ingrese el codigo</small></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="codigo" v-model="producto.codigo"name="codigo" placeholder="Codigo" class="form-control"><small class="form-text text-muted">Ingrese el codigo</small></div>
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Precio</label></div>
-                                    <div class="col-12 col-md-9"><input type="text" id="precio" name="precio" placeholder="Precio" class="form-control"><small class="form-text text-muted">Ingrese el precio</small></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="precio" v-model="producto.precio" name="precio" placeholder="Precio" class="form-control"><small class="form-text text-muted">Ingrese el precio</small></div>
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Descuento en %</label></div>
-                                    <div class="col-12 col-md-9"><input type="text" id="descuento" name="descuento" placeholder="Descuento" class="form-control"><small class="form-text text-muted">Ingrese el descuento en %</small></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="descuento" v-model="producto.descuento"name="descuento" placeholder="Descuento" class="form-control"><small class="form-text text-muted">Ingrese el descuento en %</small></div>
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Stock minimo</label></div>
-                                    <div class="col-12 col-md-9"><input type="text" id="stockMinimo" name="stockMinimo" placeholder="Stock minimo" class="form-control"><small class="form-text text-muted">Ingrese el stock minimo</small></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="stockMinimo" v-model="producto.stockMinimo" name="stockMinimo" placeholder="Stock minimo" class="form-control"><small class="form-text text-muted">Ingrese el stock minimo</small></div>
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Stock actual</label></div>
-                                    <div class="col-12 col-md-9"><input type="text" id="stockActual" name="stockActual" placeholder="Stock actual" class="form-control"><small class="form-text text-muted">Ingrese el stock actual</small></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="stockActual" v-model="producto.stockActual" name="stockActual" placeholder="Stock actual" class="form-control"><small class="form-text text-muted">Ingrese el stock actual</small></div>
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="categoria" class=" form-control-label">Categoria</label></div>
                                         <div class="col-12 col-md-9">
-                                            <select name="categoria" id="categoria" class="form-control">
+                                            <select name="categoria" id="categoria" v-model="selected" class="form-control">
                                                 <option value="0">Seleccionar</option>
+                                                <option v-for="option in options" v-bind:value="option.id">{{ option.nombre }}</option>
                                             </select>
                                         </div>
                                 </div>
@@ -134,11 +135,11 @@ if(isset($_GET['id'])){
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Descripcion corta</label></div>
-                                    <div class="col-12 col-md-9"><input type="text" id="descripcionCorta" name="descripcionCorta" placeholder="Descripcion corta" class="form-control"></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="descripcionCorta" v-model="producto.descripcionCorta" name="descripcionCorta" placeholder="Descripcion corta" class="form-control"></div>
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Descripcion larga</label></div>
-                                    <div class="col-12 col-md-9"><textarea name="descripcionLarga" id="descripcionLarga" rows="7" placeholder="Descripcion.." class="form-control"></textarea></div>
+                                    <div class="col-12 col-md-9"><textarea name="descripcionLarga" id="descripcionLarga" v-model="producto.descripcionLarga" rows="7" placeholder="Descripcion.." class="form-control"></textarea></div>
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label class=" form-control-label"></label></div>
@@ -146,17 +147,17 @@ if(isset($_GET['id'])){
                                         <div class="form-check">
                                             <div class="checkbox">
                                                 <label for="checkbox1" class="form-check-label ">
-                                                    <input type="checkbox" id="destacado" name="destacado" class="form-check-input">Destacado
+                                                    <input type="checkbox" v-model="producto.destacado" id="destacado" name="destacado" class="form-check-input">Destacado
                                                 </label>
                                             </div>
                                             <div class="checkbox">
                                                 <label for="checkbox2" class="form-check-label ">
-                                                    <input type="checkbox" id="onSale" name="onSale" class="form-check-input">OnSale
+                                                    <input type="checkbox" id="onSale" v-model="producto.onSale" name="onSale" class="form-check-input">OnSale
                                                 </label>
                                             </div>
                                             <div class="checkbox">
                                                 <label for="checkbox2" class="form-check-label ">
-                                                    <input type="checkbox" id="mostrarHome" name="mostrarHome" class="form-check-input">Mostrar en home
+                                                    <input type="checkbox" id="mostrarHome" v-model="producto.mostrarHome" name="mostrarHome" class="form-check-input">Mostrar en home
                                                 </label>
                                             </div>
                                         </div>
@@ -201,40 +202,7 @@ if(isset($_GET['id'])){
 
 
     <script>
-        (function($){
-            var id= <?php echo $id;?>;
-            if(id!=0){
-                const formData = new FormData();
-                formData.append('id', id);
-                formData.append('accion', 'obtenerporid');
-                axios.post('http://localhost/controllers/productoController.php',formData)
-                .then(function (response) {
-                    console.log(response.data);
-                    $('formulario').populateForm(response.data);
-                    //$('#nombre').val(response.data.nombre);
-                    $('#spanNombre').hide();
-                    $('#Actual').text('Modificar Producto');
-                })
-                .catch(function (error) {
-                console.log(error);
-                });
-            }
-            const formData = new FormData();
-            formData.append('accion', 'listarActivos');
-            axios.post('http://localhost/controllers/categoriaController.php',formData)
-            .then(function (response) {
-                $.each(response.data,function()
-                {
-                    var option = $('<option />');
-                    option.attr('value', this.id).text(this.nombre);
-
-                    $('#categoria').append(option);
-                });
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-        })(jQuery);
+        
 
         function Validar(){
             var foto = $("#foto").val();
@@ -249,6 +217,7 @@ if(isset($_GET['id'])){
                 formData.append('id',<?php echo $id;?>);
                 if(accion=="modificar"&&foto==""){
                     formData.append('foto', "nofoto");
+                    formData.set('video', "video");
                 }else{
                     console.log("entro a set");
                     formData.set('video', video);

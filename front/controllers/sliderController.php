@@ -86,7 +86,6 @@ if(isset($_POST['accion'])){
                     }
                 }                
                 $slider->nombre=$_POST['nombre'];
-                var_dump($slider);
                 $resultado = sliderDao::modificar($slider);
             
                 echo json_encode($resultado);

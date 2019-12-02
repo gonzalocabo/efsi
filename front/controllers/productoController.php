@@ -55,6 +55,7 @@ if(isset($_POST['accion'])){
                 
                 
             }else{
+                var_dump($_POST['categoria']);
                 echo json_encode("error");
             }            
             break;    
@@ -72,11 +73,49 @@ if(isset($_POST['accion'])){
             }		
             break;    
         case 'modificar':
-            if(isset($_POST['id'])&&isset($_POST['producto'])){
-                $cat=new producto();
-                $cat->id=$_POST['id'];
-                $cat->nombre=$_POST['producto'];
-                $resultado = productoDao::modificar($cat);
+            if(isset($_POST['id'])&&isset($_POST['nombre'])&&isset($_POST['codigo'])&&isset($_POST['precio'])&&isset($_POST['descuento'])&&isset($_POST['stockMinimo'])&&isset($_POST['stockActual'])&&isset($_POST['categoria'])&&isset($_POST['descripcionCorta'])&&isset($_POST['descripcionLarga'])&&isset($_POST['destacado'])&&isset($_POST['onSale'])&&isset($_POST['mostrarHome'])){               
+                $item = productoDao::ObtenerPorID($_POST['id']);
+                $item->nombre = $_POST['nombre'];
+                $item->codigo=$_POST['codigo'];
+                $item->precio=$_POST['precio'];
+                $item->descuento=$_POST['descuento'];
+                $item->stockMinimo=$_POST['stockMinimo'];
+                $item->stockActual=$_POST['stockActual'];
+                $item->categoria=$_POST['categoria'];
+                if($_FILES['foto']['name']!="") {
+                    $valid_extensions = array('jpeg', 'jpg', 'png', 'gif', 'bmp');
+                    $path = '../uploads/fotos/productos/';
+
+                    $img = $_FILES['foto']['name'];
+                    $tmp = $_FILES['foto']['tmp_name'];
+
+                    $ext = strtolower(pathinfo($img, PATHINFO_EXTENSION));
+
+                    $final_image = rand(1000,1000000).$img;
+
+                    if(in_array($ext, $valid_extensions)) 
+                    {
+                        $path = $path.strtolower($final_image); 
+                        if(move_uploaded_file($tmp,$path)) 
+                        {                            
+                            if(file_exists($_SERVER["DOCUMENT_ROOT"] . "/uploads/fotos/productos/" . $item->foto)) {
+                                unlink($_SERVER["DOCUMENT_ROOT"] . "/uploads/fotos/productos/" . $item->foto);
+                                $item->foto=$final_image;
+                            }else{
+                                echo json_encode("Imagen no encontrada");        
+                            }
+                        }
+                    }else{
+                        echo json_encode("Extension invalida");
+                    }
+                }
+                $item->video=$_POST['video'];
+                $item->descripcionCorta=$_POST['descripcionCorta'];
+                $item->descripcionLarga=$_POST['descripcionLarga'];
+                $item->destacado=$_POST['destacado'];
+                $item->onSale=$_POST['onSale'];
+                $item->mostrarHome=$_POST['mostrarHome'];
+                $resultado = productoDao::modificar($item);
                 echo json_encode($resultado);
             }
             //logica de modificacion

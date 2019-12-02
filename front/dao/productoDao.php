@@ -89,7 +89,7 @@ class productoDao {
             ":destacado" => $item->destacado,
             ":onSale" => $item->onSale,
             ":mostrarHome" => $item->mostrarHome
-		);
+        );
 		$STH->execute($params);
         $item->id=$DBH->lastInsertId();
         $DBH=null;
@@ -98,6 +98,34 @@ class productoDao {
     }// nuevo    
 
     public static function modificar($item) {
+        $DBH = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
+        $query = 'UPDATE productos SET nombre=:nombre,codigo=:codigo,precio=:precio,descuento=:descuento,stockminimo=:stockMinimo,stockactual=:stockActual,idcategoria=:categoria,foto=:foto,video=:video,descripcioncorta=:descripcionCorta,descripcionlarga=:descripcionLarga,destacado=:destacado,onsale=:onSale,mostrarhome=:mostrarHome WHERE idproductos=:id';
+        $params = array(
+            ":id" => $item->id,
+            ":nombre" => $item->nombre,
+            ":codigo" => $item->codigo,
+            ":precio" => $item->precio,
+            ":descuento" => $item->descuento,
+            ":stockMinimo" => $item->stockMinimo,
+            ":stockActual" => $item->stockActual,
+            ":categoria" => $item->categoria,
+            ":foto" => $item->foto,
+            ":video" => $item->video,
+            ":descripcionCorta" => $item->descripcionCorta,
+            ":descripcionLarga" => $item->descripcionLarga,
+            ":destacado" => $item->destacado,
+            ":onSale" => $item->onSale,
+            ":mostrarHome" => $item->mostrarHome
+        );
+        $STH = $DBH->prepare($query);
+        $STH->setFetchMode(PDO::FETCH_ASSOC);
+        $STH->execute($params);
+        if ($STH->rowCount() < 1) {
+            $item='error consulta';
+        }
+        $DBH=null;
+        $STH=null;
+        return $item;
         //aca va la logica para modificar. Recibe por parametro un objeto de tipo producto
     }// modificar
 

@@ -150,6 +150,14 @@ if(isset($_POST['accion'])){
                 echo json_encode("Error, no pasa ID");
             }
             break; 
+        case 'buscarPorPatron':
+            if(isset($_POST['patron'])){
+                $resultado=productoDao::BuscarPorPatron($_POST['patron']);
+                echo json_encode($resultado);
+            }else{
+                echo json_encode("error, patron no definido");
+            }
+            break;
     }
 }else{
     echo json_encode("Accion nula");

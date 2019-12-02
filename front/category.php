@@ -4,7 +4,11 @@ if(isset($_GET['idCategoria'])){
 }else{
     $id = 0;
 }
-
+if(isset($_GET['busqueda'])){
+	$busqueda=$_GET['busqueda'];
+}else{
+	$busqueda=0;
+}
 ?>
 
 <!DOCTYPE html>
@@ -119,7 +123,7 @@ if(isset($_GET['idCategoria'])){
 		(function($){
 			var idCategoria=<?php echo $id ?>;
 			var formData=new FormData();
-
+			
 			formData.append('accion',"listarActivos");
 			axios.post("http://localhost/controllers/categoriaController.php",formData).then(function(response){
 				console.log(response.data);
@@ -151,8 +155,12 @@ if(isset($_GET['idCategoria'])){
 					});
 				}).catch(function(error){console.log(error);});
 			}
-			
 
+			var patron="<?php echo $busqueda?>";
+			
+			if(patron!=0){
+				BuscarPorPatron(patron);
+			}
 						
 
 
@@ -220,7 +228,26 @@ if(isset($_GET['idCategoria'])){
 			
 		}
 
+		function BuscarPorPatron(palabra){
+			var formData=new FormData();
+			formData.append('accion','buscarPorPatron');
+			formData.append('patron',palabra);
+			axios.post("http://localhost/controllers/productoController.php",formData).then(function(response){
+				console.log(response.data);
+				if(response.data!=404){
+					_Productos=response.data;
+					$.each(response.data,function(index,value){
+							RenderGrilla(value);					
+					});
+				}else{
+					$('#productos').append('<h2>Sin resultados</h2>')
+				}
+				
+			}).catch(function(error){console.log(error);});
+    	}
+
 	</script>
+
 
 	</body>
 </html>

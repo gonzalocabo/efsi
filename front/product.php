@@ -22,6 +22,8 @@
 	<link rel="stylesheet" href="css/owl.carousel.min.css"/>
 	<link rel="stylesheet" href="css/animate.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/MiEstilo.css"/>
+
 
 
 	<!--[if lt IE 9]>
@@ -31,25 +33,14 @@
 
 </head>
 <body>
-<<<<<<< HEAD
-	<!-- Page Preloder -->
-	<div id="preloder">
-		<div class="loader"></div>
-	</div>
-
-	<!-- Header section -->
-	<?php require_once("Header.php") ?>
-	<!-- Header section end -->
-=======
 	<div id="app">
 		<!-- Page Preloder -->
 		<div id="preloder">
 			<div class="loader"></div>
 		</div>
->>>>>>> b9baea0ed65da889f79d87dd2d0cb9397fb74394
 
 		<!-- Header section -->
-		<?php require_once("/Header.php") ?>
+		<?php require_once("Header.php") ?>
 		<!-- Header section end -->
 
 		<!-- Page info -->
@@ -79,15 +70,19 @@
 					</div>
 					<div class="col-lg-6 product-details">
 						<h2 class="p-title" id="nombre">{{producto.nombre}}</h2>
-						<h3 class="p-price" id="precio">$39.90</h3>
-						<h4 class="p-stock">Disponible: <span>En stock</span></h4>
+						<h3 class="p-price" id="precio" v-if="producto.descuento==0">${{producto.precio}}</h3>
+						<h3 class="p-price tachar" id="precioTachado" v-if="producto.descuento!=0">${{producto.precio}}</h3>
+						<h3 class="p-price" id="precio" v-if="producto.descuento!=0">${{producto.precio*(100-producto.descuento)/100}}</h3>
+						<h4 class="p-stock" v-if="producto.stockActual>=producto.stockMinimo">Disponible: <span>En stock</span></h4>
+						<h4 class="p-stock" v-if="producto.stockActual<producto.stockMinimo">Disponible: <span>No hay stock</span></h4>
+
 						
 						
-						<div class="quantity">
+						<div class="quantity" v-if="producto.stockActual>=producto.stockMinimo">
 							<p>Cantidad</p>
 							<div class="pro-qty"><input type="text" value="1"></div>
 						</div>
-						<a href="#" class="site-btn">Comprar Ahora</a>
+						<a href="#" class="site-btn" v-if="producto.stockActual>=producto.stockMinimo">Comprar Ahora</a>
 						<div id="accordion" class="accordion-area">
 							<div class="panel">
 								<div class="panel-header" id="headingOne">
@@ -95,10 +90,7 @@
 								</div>
 								<div id="collapse1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
 									<div class="panel-body">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integer bibendum sodales arcu id te mpus. Ut consectetur lacus leo, non scelerisque nulla euismod nec.</p>
-										<p>Approx length 66cm/26" (Based on a UK size 8 sample)</p>
-										<p>Mixed fibres</p>
-										<p>The Model wears a UK size 8/ EU size 36/ US size 4 and her height is 5'8"</p>
+										<p>{{producto.descripcionLarga}}</p>
 									</div>
 								</div>
 							</div>
@@ -126,13 +118,6 @@
 								</div>
 							</div>
 						</div>
-						<div class="social-sharing">
-							<a href=""><i class="fa fa-google-plus"></i></a>
-							<a href=""><i class="fa fa-pinterest"></i></a>
-							<a href=""><i class="fa fa-facebook"></i></a>
-							<a href=""><i class="fa fa-twitter"></i></a>
-							<a href=""><i class="fa fa-youtube"></i></a>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -147,75 +132,11 @@
 					<h2>PRODUCTOS RELACIONADOS</h2>
 				</div>
 				<div class="product-slider owl-carousel">
-					<div class="product-item">
-						<div class="pi-pic">
-							<img src="./img/product/1.jpg" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
-					<div class="product-item">
-						<div class="pi-pic">
-							<div class="tag-new">New</div>
-							<img src="./img/product/2.jpg" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Black and White Stripes Dress</p>
-						</div>
-					</div>
-					<div class="product-item">
-						<div class="pi-pic">
-							<img src="./img/product/3.jpg" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
-					<div class="product-item">
-							<div class="pi-pic">
-								<img src="./img/product/4.jpg" alt="">
-								<div class="pi-links">
-									<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-									<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-								</div>
-							</div>
-							<div class="pi-text">
-								<h6>$35,00</h6>
-								<p>Flamboyant Pink Top </p>
-							</div>
-						</div>
-					<div class="product-item">
-						<div class="pi-pic">
-							<img src="./img/product/6.jpg" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 		</section>
+	</div>
 		<!-- RELATED PRODUCTS section end -->
 
 
@@ -238,11 +159,38 @@
 	<script src="js/jquery-ui.min.js"></script>
 	<script src="js/main.js"></script>
 	<script src="/admin/vendors/axios/axios.min.js"></script>
-	<script src="/js/app.js"></script>
+	<script src="js/app.js"></script>
 
 
 
 	<script>
+
+		(function($){
+			$('.product-slider').owlCarousel({
+				loop: false,
+				rewind: true,
+				nav: true,
+				dots: false,
+				margin : 30,
+				autoplay: true,
+				navText: ['<i class="flaticon-left-arrow-1"></i>', '<i class="flaticon-right-arrow-1"></i>'],
+				responsive : {
+					0 : {
+						items: 1,
+					},
+					480 : {
+						items: 2,
+					},
+					768 : {
+						items: 3,
+					},
+					1200 : {
+						items: 4,
+					}
+				}
+			});
+		})(jQuery);
+
 		function zoom(){
 			$('.product-thumbs-track > .pt').on('click', function(){
 			$('.product-thumbs-track .pt').removeClass('active');

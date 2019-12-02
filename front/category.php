@@ -47,7 +47,7 @@ if(isset($_GET['idCategoria'])){
 	</div>
 
 	<!-- Header section -->
-	<?php require_once("/Header.php") ?>
+	<?php require_once("Header.php") ?>
 	<!-- Header section end -->
 
 
@@ -95,7 +95,7 @@ if(isset($_GET['idCategoria'])){
 
 
 	<!-- Footer section -->
-	<?php require_once("/Footer.php") ?>
+	<?php require_once("Footer.php") ?>
 	<!-- Footer section end -->
 
 

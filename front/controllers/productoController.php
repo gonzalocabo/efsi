@@ -83,8 +83,14 @@ if(isset($_POST['accion'])){
             break;
         case 'eliminar':
             if(isset($_POST['id'])){
-                productoDao::eliminar($_POST['id']);
-                echo json_encode("true");
+                $producto=productoDao::ObtenerPorID($_POST['id']);
+                if(file_exists($_SERVER["DOCUMENT_ROOT"] . "/uploads/fotos/productos/" . $producto->foto)) {
+                    unlink($_SERVER["DOCUMENT_ROOT"] . "/uploads/fotos/productos/" . $producto->foto);
+                    productoDao::eliminar($_POST['id']);
+                    echo json_encode("true");
+                }else{
+                    echo json_encode("No existe foto");
+                }
             }else{
                 echo json_encode("Error, id nulo");
             }

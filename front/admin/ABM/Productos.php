@@ -164,6 +164,23 @@
             window.location="http://localhost/admin/Formularios/Productos.php?id="+id;
         }
 
+        function eliminar(id){
+            var r=confirm("¿Seguro que desea eliminar?")
+            if(r==true){
+                const formData = new FormData();
+                formData.append('accion', 'eliminar');
+                formData.append('id', id);
+                axios.post('http://localhost/controllers/productoController.php',formData)
+                .then(function (response) {
+                    location.reload();
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            }
+        }
+
     </script>
 
 </body>

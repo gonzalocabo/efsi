@@ -111,7 +111,7 @@ class productoDao {
         );
 		$STH->execute($params);
         $DBH=null;
-        return $item;
+        return 'true';
         //aca va la logica para eliminar
     }// eliminar
 

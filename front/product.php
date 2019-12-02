@@ -37,7 +37,7 @@
 	</div>
 
 	<!-- Header section -->
-	<?php require_once("/Header.php") ?>
+	<?php require_once("Header.php") ?>
 	<!-- Header section end -->
 
 	<!-- Page info -->
@@ -208,7 +208,7 @@
 
 
 	<!-- Footer section -->
-	<?php require_once("/Footer.php") ?>
+	<?php require_once("Footer.php") ?>
 	<!-- Footer section end -->
 
 

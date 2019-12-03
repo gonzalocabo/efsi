@@ -195,8 +195,8 @@ if(isset($_GET['busqueda'])){
 					}else{
 						precio='<h6>$'+value.precio+'</h6>';
 					}
-					append+='<img src="/uploads/fotos/productos/'+value.foto+'"alt=""><div class="pi-links"><a href="#" class="add-card"><i class="flaticon-bag"></i><span>AÑADIR AL CARRITO</span></a></div></div><div class="pi-text">';
-					append+='<div><p >'+value.nombre+'</p>'+precio+'</div></div></div></div>';
+					append+='<a href="http://localhost/product?id='+value.id+'"><img src="/uploads/fotos/productos/'+value.foto+'"alt=""></a><div class="pi-links"><a href="#" class="add-card"><i class="flaticon-bag"></i><span>AÑADIR AL CARRITO</span></a></div></div><div class="pi-text">';
+					append+='<div><a href="http://localhost/product?id='+value.id+'"><p >'+value.nombre+'</p></a>'+precio+'</div></div></div></div>';
 					$('#productos').append(append);
 		}
 

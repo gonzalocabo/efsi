@@ -158,6 +158,15 @@ if(isset($_POST['accion'])){
                 echo json_encode("error, patron no definido");
             }
             break;
+        case 'listarRelacionados':
+            if(isset($_POST['id'])){
+                $producto=productoDao::ObtenerPorID($_POST['id']);
+                $resultado=productoDao::ListarRelacionados($_POST['id'],$producto->categoria);
+                echo json_encode($resultado);
+            }else{
+                echo json_encode("no id");
+            }
+            break;
     }
 }else{
     echo json_encode("Accion nula");

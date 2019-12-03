@@ -9,10 +9,9 @@
                     </a>
                 </div>
                 <div class="col-xl-6 col-lg-5">
-                    <form class="header-search-form">
-                        <input type="text" placeholder="Buscar en tienda web ....">
-                        <button><i class="flaticon-search"></i></button>
-                    </form>
+                    
+                        <input type="text" id="busqueda" placeholder="Buscar en tienda web ....">
+                        <button><i class="flaticon-search" onclick="Buscar();"></i></button>
                 </div>
                 <div class="col-xl-4 col-lg-5">
                     <div class="user-panel">

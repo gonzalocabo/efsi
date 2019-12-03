@@ -282,7 +282,8 @@ $(window).on('load', function() {
         var thisAlert = $(input).parent();
 
         $(thisAlert).removeClass('alert-validate');
-    }
+	}
+	
     
     /*==================================================================
     [ Show pass ]*/
@@ -302,3 +303,7 @@ $(window).on('load', function() {
     });
 
 })(jQuery);
+
+function Buscar(){
+	window.location="http://localhost/category.php?busqueda="+$('#busqueda').val();        
+}

@@ -268,7 +268,7 @@
 					binded+='<div class="tag-sale" style="font-size: 15px">-'+value.descuento+'%</div>';
 				}
 			}
-			binded+='<img src="/uploads/fotos/productos/'+value.foto+'" alt="imagen"><div class="pi-links"><a href="#" class="add-card"><i class="flaticon-bag"></i><span>AÑADIR AL CARRITO</span></a></div></div><div class="pi-text"><h6>$'+(value.precio*(100-value.descuento))/100+'</h6><p>'+value.nombre+' </p></div></div>';
+			binded+='<a href="http://localhost/product?id='+value.id +'"><img src="/uploads/fotos/productos/'+value.foto+'" alt="imagen"></a><div class="pi-links"><a href="#" class="add-card"><i class="flaticon-bag"></i><span>AÑADIR AL CARRITO</span></a></div></div><div class="pi-text"><h6>$'+(value.precio*(100-value.descuento))/100+'</h6><p><a href="http://localhost/product?id='+value.id+'">'+value.nombre+' </a></p></div></div>';
 			return binded;
 		}
 

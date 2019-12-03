@@ -64,9 +64,7 @@
 				</div>
 				<div class="row">
 					<div class="col-lg-6">
-						<div class="product-pic-zoom" id="imagenProducto">
-							
-						</div>
+						<div class="product-pic-zoom" id="imagenProducto"></div>
 					</div>
 					<div class="col-lg-6 product-details">
 						<h2 class="p-title" id="nombre">{{producto.nombre}}</h2>
@@ -121,6 +119,7 @@
 					</div>
 				</div>
 			</div>
+			
 		</section>
 		<!-- product section end -->
 
@@ -131,7 +130,7 @@
 				<div class="section-title">
 					<h2>PRODUCTOS RELACIONADOS</h2>
 				</div>
-				<div class="product-slider owl-carousel">
+				<div class="product-slider owl-carousel" id="productosRelacionados">
 					
 				</div>
 			</div>
@@ -143,7 +142,6 @@
 
 	<!-- Footer section -->
 	<?php require_once("Footer.php") ?>
-
 	<!-- Footer section end -->
 
 
@@ -159,37 +157,63 @@
 	<script src="js/jquery-ui.min.js"></script>
 	<script src="js/main.js"></script>
 	<script src="/admin/vendors/axios/axios.min.js"></script>
-	<script src="js/app.js"></script>
-
-
+	<script src="js/app.js"></script>	
 
 	<script>
 
 		(function($){
-			$('.product-slider').owlCarousel({
-				loop: false,
-				rewind: true,
-				nav: true,
-				dots: false,
-				margin : 30,
-				autoplay: true,
-				navText: ['<i class="flaticon-left-arrow-1"></i>', '<i class="flaticon-right-arrow-1"></i>'],
-				responsive : {
-					0 : {
-						items: 1,
-					},
-					480 : {
-						items: 2,
-					},
-					768 : {
-						items: 3,
-					},
-					1200 : {
-						items: 4,
+
+			var id="<?php echo $_GET['id'] ?>"
+			var formData=new FormData();
+			formData.append('accion','listarRelacionados');
+			formData.append('id',id);
+			
+			axios.post("http://localhost/controllers/productoController.php",formData).then(function(response){
+				console.log(response.data);
+				$.each(response.data,function(index,value){
+					$('#productosRelacionados').append(BindearProductos(value));
+				});
+				$('.product-slider').owlCarousel({
+					loop: false,
+					rewind: true,
+					nav: true,
+					dots: false,
+					margin : 30,
+					autoplay: true,
+					navText: ['<i class="flaticon-left-arrow-1"></i>', '<i class="flaticon-right-arrow-1"></i>'],
+					responsive : {
+						0 : {
+							items: 1,
+						},
+						480 : {
+							items: 2,
+						},
+						768 : {
+							items: 3,
+						},
+						1200 : {
+							items: 4,
+						}
 					}
-				}
-			});
+				});
+			}).catch(function(error){console.log(error);});
+			
+			
 		})(jQuery);
+
+
+		function BindearProductos(value){
+			var binded='<div class="product-item"><div class="pi-pic">';
+			if(value.onSale==1){
+				binded+='<div class="tag-sale">ON SALE</div>';
+			}else{
+				if(value.descuento>0){
+					binded+='<div class="tag-sale" style="font-size: 15px">-'+value.descuento+'%</div>';
+				}
+			}
+			binded+='<a href="http://localhost/product?id='+value.id +'"><img src="/uploads/fotos/productos/'+value.foto+'" alt="imagen"></a><div class="pi-links"><a href="#" class="add-card"><i class="flaticon-bag"></i><span>AÑADIR AL CARRITO</span></a></div></div><div class="pi-text"><h6>$'+(value.precio*(100-value.descuento))/100+'</h6><p><a href="http://localhost/product?id='+value.id+'">'+value.nombre+' </a></p></div></div>';
+			return binded;
+		}
 
 		function zoom(){
 			$('.product-thumbs-track > .pt').on('click', function(){
